@@ -1,8 +1,8 @@
 # Publishing Desktop Pets 1.0.0
 
-Repository: https://github.com/ditrigo/desktop-pets  
-Permanent plugin ID: `ditrigo.desktop-pets`  
-Version/tag: `1.0.0` / `v1.0.0`
+- Repository: https://github.com/ditrigo/desktop-pets
+- Permanent plugin ID: `ditrigo.desktop-pets`
+- Version/tag: `1.0.0` / `v1.0.0`
 
 Use the marketplace repository's current
 [CLI/AI submission guide](https://github.com/omacom/omarchy-plugin-marketplace/blob/main/SUBMISSION.md),
