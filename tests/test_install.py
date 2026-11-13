@@ -206,6 +206,38 @@ class InstallTests(unittest.TestCase):
             self.install()
         self.assertEqual((self.target / "Service.qml").read_text(), "previous")
 
+    def test_rollback_preserves_other_widgets_in_all_bar_sections(self):
+        path = self.config / "shell.json"
+        for section in ("centerBegin", "centerEnd", "tray"):
+            with self.subTest(section=section):
+                original = {
+                    "bar": {
+                        "layout": {
+                            section: [
+                                {"id": installer.PLUGIN_ID, "palette": "mallard"},
+                                {"id": "other", "color": "old"},
+                            ]
+                        }
+                    }
+                }
+                current = {
+                    "bar": {
+                        "layout": {
+                            section: [
+                                {"id": installer.PLUGIN_ID, "palette": "white"},
+                                {"id": "other", "color": "user-edited"},
+                            ],
+                            "left": [{"id": "new-widget"}],
+                        }
+                    }
+                }
+                path.write_text(json.dumps(current))
+                installer.restore_settings(path, json.dumps(original).encode())
+                restored = json.loads(path.read_text())["bar"]["layout"]
+                self.assertEqual(restored[section][0]["palette"], "mallard")
+                self.assertEqual(restored[section][1]["color"], "user-edited")
+                self.assertEqual(restored["left"], [{"id": "new-widget"}])
+
     def test_invalid_json_leaves_existing_installation_alone(self):
         (self.config / "shell.json").write_text("broken")
         with self.assertRaises(json.JSONDecodeError):

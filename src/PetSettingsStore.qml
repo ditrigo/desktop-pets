@@ -23,7 +23,7 @@ Scope {
     readonly property bool applying:state==="applying"
     function entry(text){
         let doc=JSON.parse(text),layout=doc.bar?doc.bar.layout||{}:{};
-        for(let section of ["left","center","right"])for(let e of layout[section]||[])if(e.id===pluginId)return e;
+        for(let section of ["left","centerBegin","center","centerEnd","right","tray"])for(let e of layout[section]||[])if(e.id===pluginId)return e;
         for(let e of doc.plugins||[])if(e.id===pluginId)return e;
         return {};
     }

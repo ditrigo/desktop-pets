@@ -1,46 +1,45 @@
-# Marketplace submission
-
-Prepared fields for the official
-[Submit a plugin form](https://github.com/omacom/omarchy-plugin-marketplace/issues/new?template=submit-plugin.yml).
-Submit after reviewing the release. This file does not submit a listing.
-
-## Title
-
-`[Plugin]: Desktop Pets`
-
-## Repository URL
+### Repository URL
 
 https://github.com/ditrigo/desktop-pets
 
-## Category
+### Category
 
 Desktop
 
-## Tags
+### Tags
 
-Quickshell, Hyprland, Games
+quickshell, hyprland, games
 
-## Maintainer notes
+### Suggest a missing tag
 
-Desktop Pets is a bar widget and own-service desktop pet application for Omarchy
-Quattro/Hyprland. Version 1.0.0 starts with a duck in three visual styles, fitted outfits,
-window walking, toys, saved looks and live English/Russian localization.
+_No response_
 
-Installation and removal use the native `omarchy plugin` commands. The
-optional snapshot installer validates its package, preserves existing settings
-and rolls back a failed installation. The plugin uses no runtime network
-access, telemetry or elevated privileges. Pet memory remains local; normal
-removal retains it for a later reinstall.
+### Maintainer notes
 
-The runtime uses Omarchy, Quickshell, Qt Quick and prebuilt SVG/PNG art.
-Optional quacking uses `pw-play`. Python, uv, Node, rsvg-convert and Blender are
-development/studio tools only. Code, original assets and preview are MIT licensed.
-The repository includes documentation, asset provenance, automated portable
-checks and full Omarchy workstation verification tools.
+Desktop Pets is a bar widget and own-service desktop companion for Omarchy
+Quattro/Hyprland. Version 1.0.0 starts with a duck in classic, pixel and voxel
+styles, fitted outfits, window walking, toys, saved looks and live EN/RU
+localization. The permanent plugin ID is ditrigo.desktop-pets.
 
-## Maintainer confirmations
+The public repository has one root manifest, README, MIT license, original art
+sources and preview.png. The native omarchy plugin commands install and remove
+the Git checkout. The running pet uses prebuilt SVG/PNG artwork, has no runtime
+network access or telemetry, and uses no elevated privileges. Pet memory stays
+under ~/.local/state/desktop-pets/ after normal removal.
 
-Review and tick these in the submission form:
+The optional install.py/install.sh snapshot installer is an explicit user action;
+native Git installation does not execute it. It writes only the plugin directory
+and the plugin's own shell.json entries, backs up the previous installation and
+configuration, and rolls back failed installation without reverting other
+widgets' changes. Its presence is an installer capability for baseline review.
+
+Omarchy, Quickshell and Qt Quick provide the runtime. Optional sound uses pw-play.
+The pet-art studio uses uv/Python and Pillow/Shapely; it downloads declared Python
+dependencies into the user's cache only when invoked. Node, rsvg-convert and
+Blender are development tools. Full validation commands, access boundaries,
+asset provenance and the retained third-party test protocol notice are documented.
+
+### Submission checklist
 
 - [ ] The repository is public and contains installation and removal instructions.
 - [ ] I have documented the plugin license and any external dependencies.

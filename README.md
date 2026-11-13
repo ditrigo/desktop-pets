@@ -33,12 +33,16 @@ omarchy plugin add https://github.com/ditrigo/desktop-pets.git --enable
 The stable plugin ID is **`ditrigo.desktop-pets`**. Omarchy installs the
 repository under `~/.config/omarchy/plugins/ditrigo.desktop-pets/` and places
 its button on the right side of the bar. Review the source before enabling it.
+The native Git installation does not run the optional snapshot installer.
 
 For an extracted release or a separate development checkout:
 
 ```sh
 ./install.sh
 ```
+
+Run the snapshot installer only when you want it to install the plugin and
+update its own entry in `~/.config/omarchy/shell.json`.
 
 The snapshot installer validates the package, backs up the previous install
 and settings, and rolls back if the service does not start. It preserves the

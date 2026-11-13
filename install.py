@@ -136,7 +136,7 @@ def restore_settings(path, original):
         )
     old_layout = previous.get("bar", {}).get("layout", {})
     layout = current.get("bar", {}).get("layout", {})
-    for section in ("left", "center", "right"):
+    for section in dict.fromkeys([*layout, *old_layout]):
         if section in layout or section in old_layout:
             layout[section] = restore_list(
                 layout.get(section, []), old_layout.get(section, [])

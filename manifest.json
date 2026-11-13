@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "author": "ditrigo",
   "license": "MIT",
-  "description": "Interactive desktop pets with window walking, toys, outfits and custom models. Starts with a duck.",
+  "description": "Desktop companions with toys, outfits and custom models, starting with a duck.",
   "kinds": [
     "bar-widget",
     "service"

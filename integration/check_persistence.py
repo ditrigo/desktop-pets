@@ -24,10 +24,14 @@ ShellRoot {
  FileView{id:disk;path:Qt.resolvedUrl("settings.json");watchChanges:true;onFileChanged:reload();}
  QtObject{id:host;function updateEntryInline(id,settings){if(!test.drop)test.writes.push(JSON.parse(JSON.stringify(settings)));return true;}}
  PetSettingsStore{id:store;shell:host;path:Qt.resolvedUrl("settings.json").toString();timeoutMs:800;}
- function persist(entry){var d=JSON.parse(disk.text());d.bar.layout.right[0]=entry;disk.setText(JSON.stringify(d));}
+ function persist(entry){var d=JSON.parse(disk.text());d.bar.layout.centerEnd[0]=entry;disk.setText(JSON.stringify(d));}
  Timer{interval:120;running:true;repeat:true;onTriggered:{
   test.ticks++;
   if(test.stage===0&&store.disk.hat==="chef"){
+   for(const section of ["left","centerBegin","center","centerEnd","right","tray"]){
+    const doc={bar:{layout:{}}};doc.bar.layout[section]=[{id:"other",hat:"pirate"},{id:store.pluginId,hat:"wizard"}];
+    test.check(store.entry(JSON.stringify(doc)).hat==="wizard","own settings in "+section);
+   }
    test.check(store.apply({hat:"wizard"}),"accepted");test.check(store.applying,"applying before disk");test.stage++;
   }else if(test.stage===1){
    test.check(store.applying,"delayed write not falsely saved");store.apply({hat:"pirate"});store.apply({hat:"santa"});test.persist(test.writes[0]);test.stage++;
@@ -43,7 +47,7 @@ ShellRoot {
   }else if(test.stage===6&&test.writes.length>3){test.persist(test.writes[test.writes.length-1]);test.stage++;
   }else if(test.stage===7&&store.state==="saved"){
    test.check(store.settings.hat==="crown"&&store.error==="","retry confirmed");
-   var d=JSON.parse(disk.text());d.bar.layout.right[0].outfit="scarf";disk.setText(JSON.stringify(d));test.stage++;
+   var d=JSON.parse(disk.text());d.bar.layout.centerEnd[0].outfit="scarf";disk.setText(JSON.stringify(d));test.stage++;
   }else if(test.stage===8&&store.settings.outfit==="scarf"){
    test.check(store.state==="saved","idle external edit adopted");console.log("RESULT "+JSON.stringify({checks:test.checks,failed:test.failed}));Qt.quit();
   }
@@ -60,7 +64,9 @@ with tempfile.TemporaryDirectory(prefix="duck-persist-") as tmp:
         json.dumps(
             {
                 "bar": {
-                    "layout": {"right": [{"id": "ditrigo.desktop-pets", "hat": "chef"}]}
+                    "layout": {
+                        "centerEnd": [{"id": "ditrigo.desktop-pets", "hat": "chef"}]
+                    }
                 }
             }
         )

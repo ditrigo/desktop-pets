@@ -1,21 +1,30 @@
 # Publishing Desktop Pets 1.0.0
 
-The repository is prepared for the [Omarchy publishing guide](https://plugins.omarchy.org/publish.html)
-and [shell plugin contract](https://github.com/omacom/omarchy/blob/quattro/docs/omarchy-shell.md).
-The installable unit is one public GitHub repository with `manifest.json` at
-its root. The permanent ID is `ditrigo.desktop-pets`.
+Repository: https://github.com/ditrigo/desktop-pets  
+Permanent plugin ID: `ditrigo.desktop-pets`  
+Version/tag: `1.0.0` / `v1.0.0`
 
-## First release metadata
+Use the marketplace repository's current
+[CLI/AI submission guide](https://github.com/omacom/omarchy-plugin-marketplace/blob/main/SUBMISSION.md),
+[security baseline policy](https://github.com/omacom/omarchy-plugin-marketplace/blob/main/SECURITY.md#automated-security-baseline)
+and [verification guide](https://github.com/omacom/omarchy-plugin-marketplace/blob/main/VERIFICATION.md).
+The [publishing overview](https://plugins.omarchy.org/publish.html) and
+[Quattro plugin contract](https://github.com/omacom/omarchy/blob/quattro/docs/omarchy-shell.md)
+describe the repository and runtime structure.
 
-- Repository: [ditrigo/desktop-pets](https://github.com/ditrigo/desktop-pets).
-- Version/tag: `1.0.0` / `v1.0.0`.
-- Category: **Desktop**.
-- Tags: **Quickshell**, **Hyprland**, **Games**.
-- Preview: root `preview.png`, rendered from bundled art without desktop capture.
-- License: MIT; original artwork and Blender sources are included.
+## Required repository layout
 
-Work from a clean checkout of the public repository. Keep the version in
-`manifest.json`, service diagnostics, release notes and tag consistent.
+- One public GitHub repository with `manifest.json` at its root.
+- Root README with installation/removal and a root license file.
+- Documented runtime/development dependencies and configuration access.
+- Unique namespaced ID outside `omarchy.*`. Keep it unchanged after listing;
+  retired IDs cannot be reused.
+- Optional root preview. `preview.png` is generated from bundled art; the
+  marketplace optimizes it automatically. Its input limits are 50 MB / 40 MP.
+
+The submission category is **Desktop** and the three tags are **quickshell**,
+**hyprland**, **games**. The manifest's `barWidget.category` is a separate shell
+widget grouping, not the marketplace category.
 
 ## Local release gates
 
@@ -26,52 +35,67 @@ python tools/release.py
 cd dist && sha256sum -c SHA256SUMS
 ```
 
-The default release builder validates both clean staging trees using the real
-`omarchy plugin validate`. It emits:
+The builder validates both clean staging trees using `omarchy plugin validate`:
 
-- `ditrigo.desktop-pets-1.0.0.tar.gz`: runtime, translations and user docs.
-- `ditrigo.desktop-pets-1.0.0-source.tar.gz`: complete public source and studio.
-- `SHA256SUMS` and `release.json`.
+- `ditrigo.desktop-pets-1.0.0.tar.gz`: runtime and user documentation.
+- `ditrigo.desktop-pets-1.0.0-source.tar.gz`: source, studio, original art and tests.
+- `SHA256SUMS` and `release.json`: hashes and host-validation status.
 
-Archives normalize timestamps, ownership and modes. Personal packs, virtual
-environments, caches, diagnostics, reviews and Blender backup files are not
-release content. Export/remove custom packs before a public build. Portable
-CI may use `--skip-host-validation`; its report explicitly records that the
-host validation was skipped and does not replace the full release gate.
+Archives exclude personal packs, virtual environments, caches, local diagnostics
+and backup files, and normalize timestamps, ownership and modes. Portable CI uses
+`--skip-host-validation`; that report does not replace workstation verification.
 
-## Prepare the first release
+## Review the release candidate
 
-After pushing the release commit, wait for its Checks workflow to pass.
-Review both archives and their checksums, then tag that commit and create a draft:
+Wait for the Checks workflow on the final `main` commit. Check the current tag
+and draft before editing them:
 
 ```sh
-git tag v1.0.0
-git push origin v1.0.0
-gh release create v1.0.0 dist/ditrigo.desktop-pets-1.0.0.tar.gz dist/ditrigo.desktop-pets-1.0.0-source.tar.gz dist/SHA256SUMS dist/release.json --draft --verify-tag --title "Desktop Pets 1.0.0" --notes-file docs/publishing/RELEASE-NOTES.md
+git rev-parse HEAD
+git rev-parse 'v1.0.0^{}'
+gh release view v1.0.0 --repo ditrigo/desktop-pets
 ```
 
-The release stays a draft until published from GitHub's release editor.
-For corrections before publication, update the draft attachments and ensure the
-tag points to the reviewed commit. Do not move a tag after a release is public.
+The tag, draft notes and all uploaded files must describe the reviewed commit.
+While the release is a draft, replace attachments after rebuilding corrections.
+Do not move a tag after its release is public. Publishing the GitHub release is
+a useful distribution step; the marketplace's submission requirements are based
+on the public repository and exact commit, not on the presence of a GitHub release.
 
-## Marketplace submission
+## Submit to the marketplace
 
-Use the official [submission form](https://github.com/omacom/omarchy-plugin-marketplace/issues/new?template=submit-plugin.yml)
-after the release is ready. The form accepts one category and one to three
-tags. [MARKETPLACE-SUBMISSION.md](MARKETPLACE-SUBMISSION.md) contains the prepared
-fields and the maintainer confirmations from the official form.
+Issue title: **`[Plugin]: Desktop Pets`**.
 
-**Maintainer notes:**
+[MARKETPLACE-SUBMISSION.md](MARKETPLACE-SUBMISSION.md) is a ready-to-review issue
+body with the six required headings in the official order. Keep their spelling,
+order and all five checklist statements unchanged. The owner must review and
+confirm all five statements; the checked state is deliberately not prefilled.
+An agent must show the title/body and receive explicit owner approval before
+creating the issue, as required by the official CLI/AI guide.
 
-> Desktop Pets is a bar widget and own-service desktop companion for Omarchy
-> Quattro/Hyprland. It ships prebuilt SVG/PNG art and supports live English and
-> Russian localization. No runtime network access, telemetry or elevated
-> privileges are used. The optional quack action uses pw-play; Python, uv, Node,
-> rsvg-convert and Blender are development/studio tools only. Installation and
-> removal are documented; existing settings and local pet memory are preserved.
-> Source, preview and original assets are MIT licensed. Full local checks and
-> Omarchy package validation have been completed for this version.
+Use the [issue form](https://github.com/omacom/omarchy-plugin-marketplace/issues/new?template=submit-plugin.yml)
+or copy the prepared body, confirm its checklist, and submit it with GitHub CLI:
 
-The form also asks the submitter to confirm ownership/permission, documented
-dependencies and removal, configuration consent, and the listing's review
-scope. Those confirmations belong to the submitting maintainer.
+```sh
+cp docs/publishing/MARKETPLACE-SUBMISSION.md /tmp/desktop-pets-submission.md
+${EDITOR:-vi} /tmp/desktop-pets-submission.md
+gh issue create --repo omacom/omarchy-plugin-marketplace --title "[Plugin]: Desktop Pets" --body-file /tmp/desktop-pets-submission.md
+```
+
+Do not send the unconfirmed template or open a duplicate issue for corrections.
+
+## Validation and approval
+
+The bot validates repository structure and scans the exact validated commit
+without executing the plugin. The current baseline identifies `install.py` and
+`install.sh` as an `installer` capability, so expect `review-required`. This is
+not a finding by itself; its documented scope needs marketplace-maintainer
+review. Do not remove or disguise legitimate capabilities to change that result.
+
+An authorized marketplace maintainer reviews the current reports and applies
+`approved-and-verified` last. The workflow performs a fresh matching scan before
+publication. Our CI and local preflight are not marketplace verification.
+
+Keep the submitted HEAD stable during review. If code changes, update the same
+issue and let validation run again; old evidence does not cover a newer commit.
+After listing, use the official verification/update form for future releases.

@@ -21,3 +21,12 @@ their respective licenses. Development tools are not shipped in runtime archives
 
 New third-party assets require documented provenance and compatible licensing.
 Do not add unlicensed reference images or personal custom packs to a public release.
+
+## Bundled third-party test material
+
+`integration/protocols/duck-virtual-pointer.xml` contains the wlr virtual pointer
+protocol from [wlr-protocols](https://gitlab.freedesktop.org/wlroots/wlr-protocols).
+Its 2019 Josef Gajdusek copyright notice and MIT license text are retained inside
+the XML. It is used only by the opt-in compositor input test and is not part of
+the runtime archive. Generated pointer test binaries are temporary and are not
+bundled.

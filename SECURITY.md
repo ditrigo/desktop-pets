@@ -14,6 +14,18 @@ The art studio may download declared Python development dependencies through
 uv and may run Blender or Quickshell when explicitly requested. Those tools
 are separate from the running pet.
 
+`install.py` and `install.sh` are optional snapshot installation paths, invoked
+explicitly by the user. They write the plugin's directory and its own Omarchy
+configuration entry, preserve other widgets and keep backups in the pet's local
+state directory. Native Git installation does not execute these scripts. The
+marketplace baseline classifies their presence as an `installer` capability
+requiring maintainer review; that classification is not a finding by itself.
+
+Marketplace compatibility and baseline results apply to one exact commit.
+They are not a security audit or a guarantee about later changes. Native
+Omarchy install and update commands follow upstream Git; inspect the offered
+diff before updating.
+
 Custom packs contain metadata and local SVG/PNG/atlas files. The studio rejects
 path traversal, symlinks, oversized inputs, external SVG resources and scripts,
 invalid pixel alpha and incompatible rigs. Import validation is not a sandbox:
