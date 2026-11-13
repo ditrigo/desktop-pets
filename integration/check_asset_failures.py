@@ -11,11 +11,11 @@ with tempfile.TemporaryDirectory(prefix="duck-corrupt-assets-") as tmp:
     p = Path(tmp)
     (p / "src").mkdir()
     shutil.copytree(ROOT / "src/assets", p / "src/assets")
-    for name in ["DuckGeometry.js", "DuckAtlas.js"]:
+    for name in ["PetGeometry.js", "PetAtlas.js"]:
         shutil.copy2(ROOT / "src" / name, p / "src" / name)
     path = p / "src/assets/duck3d/manifest.json"
     original = path.read_text()
-    js = (p / "src/DuckAtlas.js").read_text()
+    js = (p / "src/PetAtlas.js").read_text()
 
     def reject(label):
         try:
@@ -33,9 +33,9 @@ with tempfile.TemporaryDirectory(prefix="duck-corrupt-assets-") as tmp:
     m = json.loads(original)
     m["parts"]["yellow-head"]["frames"] -= 1
     path.write_text(json.dumps(m))
-    (p / "src/DuckAtlas.js").write_text("var data = " + json.dumps(m) + ";")
+    (p / "src/PetAtlas.js").write_text("var data = " + json.dumps(m) + ";")
     reject("missing pose frame")
     path.write_text(original)
-    (p / "src/DuckAtlas.js").write_text(js)
+    (p / "src/PetAtlas.js").write_text(js)
     (p / "src/assets/duck2d/pixel/foot.png").unlink()
     reject("missing flat resource")

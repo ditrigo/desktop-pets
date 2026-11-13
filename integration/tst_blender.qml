@@ -1,10 +1,10 @@
 import QtQuick
 import QtTest
-import "../src" as Duck
+import "../src" as Pet
 
 Rectangle {
     width:240;height:224;color:"#1d2731"
-    Duck.DuckSprite{id:bird;width:240;height:224;artStyle:"voxel";}
+    Pet.PetSprite{id:bird;width:240;height:224;artStyle:"voxel";}
     TestCase {
         name:"BlenderSprite"
         when:windowShown

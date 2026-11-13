@@ -1,13 +1,13 @@
-# Publishing Desktop Duck 1.0.0
+# Publishing Desktop Pets 1.0.0
 
 The repository is prepared for the [Omarchy publishing guide](https://plugins.omarchy.org/publish.html)
 and [shell plugin contract](https://github.com/omacom/omarchy/blob/quattro/docs/omarchy-shell.md).
 The installable unit is one public GitHub repository with `manifest.json` at
-its root. The permanent ID is `ditrigo.desktop-duck`.
+its root. The permanent ID is `ditrigo.desktop-pets`.
 
 ## First release metadata
 
-- Repository: [ditrigo/omarchy-desktop-duck](https://github.com/ditrigo/omarchy-desktop-duck).
+- Repository: [ditrigo/desktop-pets](https://github.com/ditrigo/desktop-pets).
 - Version/tag: `1.0.0` / `v1.0.0`.
 - Category: **Desktop**.
 - Tags: **Quickshell**, **Hyprland**, **Games**.
@@ -20,7 +20,7 @@ Work from a clean checkout of the public repository. Keep the version in
 ## Local release gates
 
 ```sh
-./duck-art build
+./pet-art build
 python integration/verify.py
 python tools/release.py
 cd dist && sha256sum -c SHA256SUMS
@@ -29,8 +29,8 @@ cd dist && sha256sum -c SHA256SUMS
 The default release builder validates both clean staging trees using the real
 `omarchy plugin validate`. It emits:
 
-- `ditrigo.desktop-duck-1.0.0.tar.gz`: runtime, translations and user docs.
-- `ditrigo.desktop-duck-1.0.0-source.tar.gz`: complete public source and studio.
+- `ditrigo.desktop-pets-1.0.0.tar.gz`: runtime, translations and user docs.
+- `ditrigo.desktop-pets-1.0.0-source.tar.gz`: complete public source and studio.
 - `SHA256SUMS` and `release.json`.
 
 Archives normalize timestamps, ownership and modes. Personal packs, virtual
@@ -47,7 +47,7 @@ Review both archives and their checksums, then tag that commit and create a draf
 ```sh
 git tag v1.0.0
 git push origin v1.0.0
-gh release create v1.0.0 dist/ditrigo.desktop-duck-1.0.0.tar.gz dist/ditrigo.desktop-duck-1.0.0-source.tar.gz dist/SHA256SUMS dist/release.json --draft --verify-tag --title "Desktop Duck 1.0.0" --notes-file docs/publishing/RELEASE-NOTES.md
+gh release create v1.0.0 dist/ditrigo.desktop-pets-1.0.0.tar.gz dist/ditrigo.desktop-pets-1.0.0-source.tar.gz dist/SHA256SUMS dist/release.json --draft --verify-tag --title "Desktop Pets 1.0.0" --notes-file docs/publishing/RELEASE-NOTES.md
 ```
 
 The release stays a draft until published from GitHub's release editor.
@@ -63,7 +63,7 @@ fields and the maintainer confirmations from the official form.
 
 **Maintainer notes:**
 
-> Desktop Duck is a bar widget and own-service desktop companion for Omarchy
+> Desktop Pets is a bar widget and own-service desktop companion for Omarchy
 > Quattro/Hyprland. It ships prebuilt SVG/PNG art and supports live English and
 > Russian localization. No runtime network access, telemetry or elevated
 > privileges are used. The optional quack action uses pw-play; Python, uv, Node,

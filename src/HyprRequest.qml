@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
-import "DuckModel.js" as Model
+import "PetModel.js" as Model
 
 // One short connection per request. Never leave Hyprland's command socket open.
 Scope {

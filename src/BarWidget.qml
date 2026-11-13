@@ -2,15 +2,15 @@ import QtQuick
 import Quickshell
 import qs.Ui as Ui
 import qs.Commons as Commons
-import "DuckStatus.js" as Status
-import "DuckText.js" as SafeText
+import "PetStatus.js" as Status
+import "PetText.js" as SafeText
 
 Ui.BarWidget {
     id: root
-    DuckTranslations {
+    PetTranslations {
         id: strings
     }
-    moduleName: "ditrigo.desktop-duck"
+    moduleName: "ditrigo.desktop-pets"
     // Ui.BarWidget exposes only QtObject. The host injects its bar API at runtime,
     // matching the dynamic bar interface used by Ui.WidgetButton.
     readonly property var hostBar: bar
@@ -26,7 +26,7 @@ Ui.BarWidget {
             else
                 service[method](arg);
         } else {
-            const cmd = ["omarchy-shell", "desktop-duck", method];
+            const cmd = ["omarchy-shell", "desktop-pets", method];
             if (arg !== undefined)
                 cmd.push(arg);
             Quickshell.execDetached(cmd);

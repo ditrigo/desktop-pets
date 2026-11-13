@@ -1,8 +1,8 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import "DuckGeometry.js" as Geometry
-import "DuckHit.js" as Hit
-import "DuckCatalog.js" as Catalog
+import "PetGeometry.js" as Geometry
+import "PetHit.js" as Hit
+import "PetCatalog.js" as Catalog
 
 Item {
     id: flat
@@ -126,6 +126,6 @@ Item {
                 }
             }
         }
-        DuckEffects{anchors.fill:parent;bird:flat.bird;}
+        PetEffects{anchors.fill:parent;bird:flat.bird;}
     }
 }

@@ -32,7 +32,7 @@ def export(blend, out, *options):
     )
 
 
-with tempfile.TemporaryDirectory(prefix="duck-artist-") as tmp:
+with tempfile.TemporaryDirectory(prefix="pet-artist-") as tmp:
     p = Path(tmp)
     before = sha(master)
     script = p / "edit.py"

@@ -18,9 +18,9 @@ needed when authoring or rebuilding the voxel artwork.
 Use the studio from a source checkout:
 
 ```sh
-./duck-art blender /path/to/my-duck.blend --key my-duck --label "My duck"
-./duck-art preview my-duck
-./duck-art build --install
+./pet-art blender /path/to/my-duck.blend --key my-duck --label "My duck"
+./pet-art preview my-duck
+./pet-art build --install
 ```
 
 The importer validates the rig, exports a separate custom pack and preserves
@@ -33,7 +33,7 @@ For reproducible changes to the bundled geometry, edit
 
 ```sh
 uv run --frozen python integration/build_blender_assets.py
-./duck-art build
+./pet-art build
 ```
 
 This regenerates the bundled master from the script. To render a manually

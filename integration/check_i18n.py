@@ -47,8 +47,8 @@ def live_test():
         source[:start]
         + """
  FileView{id:languageFile;path:Qt.resolvedUrl("language").toString().replace(/^file:\\/\\//,"");}
- DuckTranslations{id:strings;}
- DuckSettingsStore{id:errorStore;}
+ PetTranslations{id:strings;}
+ PetSettingsStore{id:errorStore;}
  Timer{interval:250;running:true;repeat:true;onTriggered:{
   if(test.busy)return;
   var items=test.descendants(settings,[]);

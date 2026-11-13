@@ -8,7 +8,7 @@ import qs.Ui
 // Quickshell creates this through its platform factory; qmltypes lists only the abstract interface.
 PanelWindow { // qmllint disable uncreatable-type
     id: window
-    DuckTranslations {
+    PetTranslations {
         id: strings
     }
     property var controller: null
@@ -24,7 +24,7 @@ PanelWindow { // qmllint disable uncreatable-type
     implicitHeight: Math.min(settings.tab === 2 ? 760 : settings.tab === 1 ? 610 : 620, screen ? screen.height - 80 : 760)
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
-    WlrLayershell.namespace: "ditrigo-duck-settings"
+    WlrLayershell.namespace: "ditrigo-pets-settings"
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
     Rectangle {
@@ -83,7 +83,7 @@ PanelWindow { // qmllint disable uncreatable-type
                 visible: !!window.controller && (window.controller.lastError !== "" || window.controller.settingsState === "applying")
                 color: Qt.rgba(.88, .60, .28, .10)
                 radius: 8
-                DuckLabel {
+                PetLabel {
                     id: errorText
                     x: 8
                     y: 8
@@ -116,7 +116,7 @@ PanelWindow { // qmllint disable uncreatable-type
                 contentHeight: settings.implicitHeight
                 boundsBehavior: Flickable.StopAtBounds
                 QQC.ScrollBar.vertical: QQC.ScrollBar {}
-                DuckSettings {
+                PetSettings {
                     id: settings
                     width: flick.width - 14
                     controller: window.controller

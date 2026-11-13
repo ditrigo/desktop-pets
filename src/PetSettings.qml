@@ -2,13 +2,13 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import qs.Commons as Commons
 import qs.Ui
-import "DuckLooks.js" as Looks
-import "DuckCatalog.js" as Catalog
-import "DuckStatus.js" as Status
+import "PetLooks.js" as Looks
+import "PetCatalog.js" as Catalog
+import "PetStatus.js" as Status
 
 Column {
     id: root
-    DuckTranslations {
+    PetTranslations {
         id: strings
     }
     property var controller: null
@@ -60,7 +60,7 @@ Column {
         height: 105
         radius: 14
         color: Qt.rgba(1, .82, .38, .08)
-        DuckSprite {
+        PetSprite {
             x: 5
             y: 0
             width: 112
@@ -87,18 +87,18 @@ Column {
             width: parent.width - x - 12
             anchors.verticalCenter: parent.verticalCenter
             spacing: 5
-            DuckLabel {
+            PetLabel {
                 width: parent.width
                 text: root.cfg.name || strings.t("pet.default-name")
                 font.pixelSize: 20
                 font.bold: true
             }
-            DuckLabel {
+            PetLabel {
                 width: parent.width
                 text: Status.label(root.backend.runState, strings) || (root.backend.runtime.mood ? strings.t("mood." + root.backend.runtime.mood, root.backend.runtime.mood) : strings.t("pet.neighbor"))
                 opacity: .8
             }
-            DuckLabel {
+            PetLabel {
                 width: parent.width
                 text: Status.hint(root.backend.runState, strings) || (root.backend.resting ? strings.tn("rest.remaining", root.backend.restMinutes).arg(Commons.I18n.formatNumber(root.backend.restMinutes)) : root.stateNames[root.backend.runtime.mode] || strings.t("pet.ready"))
                 font.pixelSize: 11
@@ -106,7 +106,7 @@ Column {
             }
         }
     }
-    DuckLabel {
+    PetLabel {
         width: parent.width
         visible: !!root.backend.quietNow
         text: strings.t("quiet.active").arg(root.cfg.quietMode === "work" ? strings.t("quiet.work") : strings.t("quiet.reduced"))
@@ -176,7 +176,7 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: strings.t("play.help")
             font.pixelSize: 11
@@ -214,7 +214,7 @@ Column {
                 fontSize: 12
             }
         }
-        DuckSettingRow {
+        PetSettingRow {
             label: strings.t("quiet.work")
             detail: strings.t("work.help")
             ToggleSwitch {
@@ -239,7 +239,7 @@ Column {
                 fontSize: 12
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             font.pixelSize: 11
             opacity: .65
@@ -250,7 +250,7 @@ Column {
         width: parent.width
         spacing: 14
         visible: root.tab === 1
-        DuckSettingRow {
+        PetSettingRow {
             label: strings.t("setting.name")
             detail: strings.t("name.help")
             TextField {
@@ -260,7 +260,7 @@ Column {
                 onEditingFinished: root.backend.setSetting("name", text)
             }
         }
-        DuckAppearancePicker {
+        PetAppearancePicker {
             width: parent.width
             controller: root.backend
             previewView: root.previewView
@@ -268,7 +268,7 @@ Column {
             heading: strings.t("setting.model")
             options: Catalog.data.models
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("setting.view")
             font.bold: true
         }
@@ -299,7 +299,7 @@ Column {
                 }
             }
         }
-        DuckSettingRow {
+        PetSettingRow {
             label: strings.t("setting.size")
             detail: strings.t("size.help")
             NumberField {
@@ -313,7 +313,7 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("setting.palette")
             font.bold: true
         }
@@ -345,7 +345,7 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("collection.title")
             font.bold: true
         }
@@ -378,7 +378,7 @@ Column {
                 required property var modelData
                 width: root.width
                 spacing: 7
-                DuckSprite {
+                PetSprite {
                     width: 70
                     height: 66
                     artStyle: savedRow.modelData.artStyle || root.cfg.artStyle
@@ -416,13 +416,13 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: strings.t("collection.help")
             font.pixelSize: 11
             opacity: .6
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("collection.presets")
             font.bold: true
         }
@@ -443,13 +443,13 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: strings.t("collection.mix")
             font.pixelSize: 11
             opacity: .6
         }
-        DuckAppearancePicker {
+        PetAppearancePicker {
             width: parent.width
             controller: root.backend
             previewView: root.previewView
@@ -458,7 +458,7 @@ Column {
             columns: 4
             options: Looks.available(Looks.hats, root.cfg.artStyle)
         }
-        DuckAppearancePicker {
+        PetAppearancePicker {
             width: parent.width
             controller: root.backend
             previewView: root.previewView
@@ -466,20 +466,20 @@ Column {
             heading: strings.t("setting.outfit")
             options: Looks.available(Looks.outfits, root.cfg.artStyle)
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: strings.t("collection.compatibility")
             font.pixelSize: 11
             opacity: .6
         }
-        DuckSettingRow {
+        PetSettingRow {
             label: strings.t("setting.enabled")
             ToggleSwitch {
                 checked: root.cfg.enabled
                 onToggled: root.backend.setSetting("enabled", !root.cfg.enabled)
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: strings.t("interaction.help")
             font.pixelSize: 12
@@ -490,7 +490,7 @@ Column {
         width: parent.width
         spacing: 14
         visible: root.tab === 2
-        DuckSettingRow {
+        PetSettingRow {
             label: strings.t("setting.quiet")
             detail: strings.t("quiet.help")
             ToggleSwitch {
@@ -503,7 +503,7 @@ Column {
             enabled: root.cfg.quietHours
             Column {
                 spacing: 4
-                DuckLabel {
+                PetLabel {
                     text: strings.t("quiet.start")
                     font.pixelSize: 11
                     opacity: 0.65
@@ -525,7 +525,7 @@ Column {
             }
             Column {
                 spacing: 4
-                DuckLabel {
+                PetLabel {
                     text: strings.t("quiet.end")
                     font.pixelSize: 11
                     opacity: 0.65
@@ -546,7 +546,7 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             visible: root.cfg.quietHours
             text: !quietStart.acceptableInput || !quietEnd.acceptableInput ? strings.t("quiet.invalid") : root.cfg.quietStart === root.cfg.quietEnd ? strings.t("quiet.equal") : strings.t("quiet.time-help")
@@ -570,7 +570,7 @@ Column {
                 onClicked: root.backend.setSetting("quietMode", "reduced")
             }
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("setting.power")
             font.bold: true
         }
@@ -602,13 +602,13 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             font.pixelSize: 11
             opacity: .6
             text: strings.t("power.help")
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("setting.personality")
             font.bold: true
         }
@@ -640,13 +640,13 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             opacity: .6
             font.pixelSize: 11
             text: root.cfg.personality === "calm" ? strings.t("personality.calm-help") : root.cfg.personality === "playful" ? strings.t("personality.playful-help") : strings.t("personality.curious-help")
         }
-        DuckLabel {
+        PetLabel {
             text: strings.t("setting.monitor")
             font.bold: true
         }
@@ -672,13 +672,13 @@ Column {
                 }
             }
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: strings.t("monitor.help")
             font.pixelSize: 11
             opacity: .6
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             font.pixelSize: 11
             opacity: .65
@@ -687,7 +687,7 @@ Column {
                 return !f ? strings.t("favorite.none") : f.edge === "window" && f.app ? strings.t("favorite.window").arg(f.app) : strings.t("favorite.floor");
             }
         }
-        DuckSettingRow {
+        PetSettingRow {
             label: strings.t("setting.speed")
             detail: strings.t("speed.help")
             NumberField {
@@ -756,7 +756,7 @@ Column {
                     detail: strings.t("reduced.help")
                 }
             ]
-            delegate: DuckSettingRow {
+            delegate: PetSettingRow {
                 id: toggleRow
                 required property var modelData
                 label: modelData.text

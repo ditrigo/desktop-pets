@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell
-import "DuckHit.js" as Hit
+import "PetHit.js" as Hit
 Region {
     id:mask
     required property var birdSprite

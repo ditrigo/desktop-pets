@@ -30,7 +30,7 @@ ROOT_FILES = {
     ".gitignore",
     "install.py",
     "install.sh",
-    "duck-art",
+    "pet-art",
     "pyproject.toml",
     "uv.lock",
 }
@@ -107,7 +107,7 @@ def copy_files(root, files, target):
         output = target / relative
         output.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, output)
-        output.chmod(0o755 if path.name in ("duck-art", "install.sh") else 0o644)
+        output.chmod(0o755 if path.name in ("pet-art", "install.sh") else 0o644)
 
 
 def archive(folder, output):
@@ -122,7 +122,7 @@ def archive(folder, output):
             info = tar.gettarinfo(path, arcname=str(path.relative_to(folder)))
             info.uid = info.gid = info.mtime = 0
             info.uname = info.gname = ""
-            info.mode = 0o755 if path.name in ("duck-art", "install.sh") else 0o644
+            info.mode = 0o755 if path.name in ("pet-art", "install.sh") else 0o644
             with path.open("rb") as content:
                 tar.addfile(info, content)
 

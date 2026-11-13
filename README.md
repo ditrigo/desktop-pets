@@ -1,17 +1,18 @@
-# Desktop Duck
+# Desktop Pets
 
-An interactive desktop companion for **Omarchy Quattro and Hyprland**.
-Walk along window edges, place food, throw a ball, pet your duck, and mix
-outfits across classic, pixel and Blender-rendered voxel models.
+Interactive desktop companions for **Omarchy Quattro and Hyprland**.
+Version 1.0.0 starts with a duck in classic, pixel and Blender-rendered voxel
+styles. Walk along window edges, place food, throw a ball, pet your companion
+and mix outfits. Custom models and clothes use the same `pet-art` studio.
 
 **1.0.0 — first public release.**
 
-[![Checks](https://github.com/ditrigo/omarchy-desktop-duck/actions/workflows/checks.yml/badge.svg)](https://github.com/ditrigo/omarchy-desktop-duck/actions/workflows/checks.yml)
+[![Checks](https://github.com/ditrigo/desktop-pets/actions/workflows/checks.yml/badge.svg)](https://github.com/ditrigo/desktop-pets/actions/workflows/checks.yml)
 
 [Русский](docs/ru/README.md) · [Art studio](ART-TOOL.md) ·
 [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 
-![Desktop Duck models and outfits](preview.png)
+![Desktop Pets models and outfits](preview.png)
 
 ## Requirements
 
@@ -20,17 +21,17 @@ outfits across classic, pixel and Blender-rendered voxel models.
 - Optional: `pw-play` from `pipewire-audio` for quacking. Sound is off by default.
 
 The runtime uses prebuilt SVG/PNG assets. Python, Node, uv and Blender are
-**development tools**, not requirements for keeping the duck on your desktop.
+**development tools**, not requirements for keeping a pet on your desktop.
 The full verification suite is run on Omarchy 4.5 with Qt 6.12.
 
 ## Install
 
 ```sh
-omarchy plugin add https://github.com/ditrigo/omarchy-desktop-duck.git --enable
+omarchy plugin add https://github.com/ditrigo/desktop-pets.git --enable
 ```
 
-The stable plugin ID is **`ditrigo.desktop-duck`**. Omarchy installs the
-repository under `~/.config/omarchy/plugins/ditrigo.desktop-duck/` and places
+The stable plugin ID is **`ditrigo.desktop-pets`**. Omarchy installs the
+repository under `~/.config/omarchy/plugins/ditrigo.desktop-pets/` and places
 its button on the right side of the bar. Review the source before enabling it.
 
 For an extracted release or a separate development checkout:
@@ -84,28 +85,28 @@ See [translation instructions](docs/development/translations.md).
 For a git-managed installation:
 
 ```sh
-omarchy plugin update ditrigo.desktop-duck
-omarchy plugin disable ditrigo.desktop-duck
-omarchy plugin enable ditrigo.desktop-duck
-omarchy plugin remove ditrigo.desktop-duck
+omarchy plugin update ditrigo.desktop-pets
+omarchy plugin disable ditrigo.desktop-pets
+omarchy plugin enable ditrigo.desktop-pets
+omarchy plugin remove ditrigo.desktop-pets
 ```
 
 Omarchy manages the checkout and shows updates before applying them. Export
 custom packs before replacing a modified development checkout. Removal leaves
-pet memory in `~/.local/state/omarchy-desktop-duck/` for a later reinstall.
+pet memory in `~/.local/state/desktop-pets/` for a later reinstall.
 Snapshot backups are stored in its `backups/` subdirectory.
 
 ## Custom models and clothes
 
-The source release includes the `duck-art` studio. It creates editable templates,
+The source release includes the `pet-art` studio. It creates editable templates,
 validates artwork, generates interaction contours, previews the real QML renderer,
 imports compatible Blender masters and installs successful builds.
 
 ```sh
-./duck-art new model my-duck --label "My duck" --base vector
-./duck-art new outfit my-coat --label "My coat" --template raincoat
-./duck-art preview my-coat --guides
-./duck-art build --install
+./pet-art new model my-duck --label "My duck" --base vector
+./pet-art new outfit my-coat --label "My coat" --template raincoat
+./pet-art preview my-coat --guides
+./pet-art build --install
 ```
 
 Run the studio from a separate source checkout or from the installed checkout

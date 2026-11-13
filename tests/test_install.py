@@ -32,7 +32,7 @@ class InstallTests(unittest.TestCase):
         )
         (self.source / "src").mkdir()
         (self.source / "src/Service.qml").write_text("new")
-        (self.source / "src/DuckModel.js").write_text("model")
+        (self.source / "src/PetModel.js").write_text("model")
         (self.source / "src/assets").mkdir()
         (self.source / "src/assets/quack.wav").write_bytes(b"audio")
         (self.source / "review").mkdir()
@@ -66,7 +66,7 @@ class InstallTests(unittest.TestCase):
             return types.SimpleNamespace(
                 returncode=0, stdout="true" if self.locked else "false"
             )
-        if command[:3] == ["omarchy-shell", "desktop-duck", "status"]:
+        if command[:3] == ["omarchy-shell", "desktop-pets", "status"]:
             self.status_calls += 1
             return types.SimpleNamespace(
                 returncode=0,
@@ -119,7 +119,7 @@ class InstallTests(unittest.TestCase):
         self.assertEqual((service.parent / "assets/quack.wav").read_bytes(), b"audio")
         self.assertEqual((backup / "plugin/Service.qml").read_text(), "previous")
         self.assertEqual(json.loads((backup / "memory.json").read_text())["fed"], 12)
-        self.assertIn(["omarchy-shell", "desktop-duck", "action", "pause"], self.calls)
+        self.assertIn(["omarchy-shell", "desktop-pets", "action", "pause"], self.calls)
 
     def test_preflight_validation_excludes_development_symlinks(self):
         (self.source / ".venv/bin").mkdir(parents=True)
@@ -147,7 +147,7 @@ class InstallTests(unittest.TestCase):
         (self.config / "shell.json").unlink()
 
         def run(command, **kwargs):
-            if command == ["omarchy-shell", "desktop-duck", "status"]:
+            if command == ["omarchy-shell", "desktop-pets", "status"]:
                 self.calls.append(command)
                 self.status_calls += 1
                 return types.SimpleNamespace(
@@ -175,7 +175,7 @@ class InstallTests(unittest.TestCase):
         self.assertTrue((target / manifest["entryPoints"]["service"]).is_file())
         self.assertFalse((backup / "plugin").exists())
         self.assertFalse((backup / "memory.json").exists())
-        self.assertNotIn(["omarchy-shell", "desktop-duck", "save"], self.calls)
+        self.assertNotIn(["omarchy-shell", "desktop-pets", "save"], self.calls)
         self.assertIn(["omarchy", "plugin", "enable", installer.PLUGIN_ID], self.calls)
 
     def test_snapshot_install_never_replaces_git_history(self):
@@ -218,7 +218,7 @@ class InstallTests(unittest.TestCase):
         first = json.loads((self.target / "manifest.json").read_text())["entryPoints"][
             "service"
         ]
-        (self.source / "src/DuckModel.js").write_text("changed model")
+        (self.source / "src/PetModel.js").write_text("changed model")
         self.install()
         second = json.loads((self.target / "manifest.json").read_text())["entryPoints"][
             "service"

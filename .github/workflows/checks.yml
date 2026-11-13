@@ -22,7 +22,7 @@ jobs:
           python -m pip install uv
       - name: Check Python and pure JavaScript
         env:
-          UV_PROJECT_ENVIRONMENT: ${{ runner.temp }}/duck-art-venv
+          UV_PROJECT_ENVIRONMENT: ${{ runner.temp }}/pet-art-venv
         run: |
           uv run --frozen --group dev ruff check tools install.py tests integration art/flat
           uv run --frozen --group dev ruff format --check tools install.py tests integration art/flat

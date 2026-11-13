@@ -1,7 +1,7 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import "DuckGeometry.js" as Geometry
-import "DuckCatalog.js" as Catalog
+import "PetGeometry.js" as Geometry
+import "PetCatalog.js" as Catalog
 
 // SVG parts and Blender PNG atlases are cached as textures. Existing scene
 // timing drives poses; neither renderer owns a timer or a JavaScript Canvas.
@@ -69,10 +69,10 @@ Item {
     }
     Component {
         id:studioComponent
-        DuckBlenderSprite{width:duck.width;height:duck.height;bird:duck;}
+        PetBlenderSprite{width:duck.width;height:duck.height;bird:duck;}
     }
     Component {
         id:flatComponent
-        DuckFlatSprite{width:duck.width;height:duck.height;bird:duck;}
+        PetFlatSprite{width:duck.width;height:duck.height;bird:duck;}
     }
 }

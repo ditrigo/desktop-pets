@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install or update Desktop Duck, preserving configuration and rolling back failures."""
+"""Install or update Desktop Pets, preserving configuration and rolling back failures."""
 
 import argparse
 from datetime import datetime
@@ -12,7 +12,7 @@ import subprocess
 import tempfile
 import time
 
-PLUGIN_ID = "ditrigo.desktop-duck"
+PLUGIN_ID = "ditrigo.desktop-pets"
 SOURCE = Path(__file__).resolve().parent
 
 
@@ -164,7 +164,7 @@ def install(
     existing = config / "plugins" / PLUGIN_ID
     if (existing / ".git").exists() and source.resolve() != existing.resolve():
         raise RuntimeError(
-            "This plugin is managed by git. Update it with omarchy plugin update, or run duck-art from that checkout; a snapshot install cannot replace its git history."
+            "This plugin is managed by git. Update it with omarchy plugin update, or run pet-art from that checkout; a snapshot install cannot replace its git history."
         )
     validate_package(source, run)
     if restart:
@@ -190,14 +190,14 @@ def install(
     if memory.exists():
         shutil.copy2(memory, backup / "memory.json")
     before = run(
-        ["omarchy-shell", "desktop-duck", "status"], capture_output=True, text=True
+        ["omarchy-shell", "desktop-pets", "status"], capture_output=True, text=True
     )
     try:
         live_before = json.loads(before.stdout) if before.returncode == 0 else None
     except (ValueError, TypeError):
         live_before = None
     if live_before:
-        run(["omarchy-shell", "desktop-duck", "save"], capture_output=True, check=True)
+        run(["omarchy-shell", "desktop-pets", "save"], capture_output=True, check=True)
     # Staging and rollback are on the same filesystem as the plugin directory.
     staging = Path(tempfile.mkdtemp(prefix=".duck-update-", dir=config))
     displaced = staging / "previous"
@@ -231,7 +231,7 @@ def install(
                 break
             sleep(0.1)
         else:
-            raise RuntimeError("Desktop Duck was not registered by the shell")
+            raise RuntimeError("Desktop Pets was not registered by the shell")
         if enable:
             run(["omarchy", "plugin", "enable", PLUGIN_ID], check=True)
         if restart:
@@ -239,7 +239,7 @@ def install(
         if live_before or enable:
             for _ in range(60):
                 probe = run(
-                    ["omarchy-shell", "desktop-duck", "status"],
+                    ["omarchy-shell", "desktop-pets", "status"],
                     capture_output=True,
                     text=True,
                 )
@@ -258,9 +258,9 @@ def install(
                     "New service did not start; retry with --restart to clear the QML cache"
                 )
             if live_before and live.get("paused") != live_before.get("paused"):
-                run(["omarchy-shell", "desktop-duck", "action", "pause"], check=True)
+                run(["omarchy-shell", "desktop-pets", "action", "pause"], check=True)
             if live_before and live_before.get("opened"):
-                run(["omarchy-shell", "desktop-duck", "show"], check=True)
+                run(["omarchy-shell", "desktop-pets", "show"], check=True)
         return target, backup
     except BaseException:
         if replaced:
@@ -296,7 +296,7 @@ def main():
     )
     state = (
         Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state"))
-        / "omarchy-desktop-duck"
+        / "desktop-pets"
     )
     target, backup = install(
         SOURCE, config, state, enable=not args.no_enable, restart=args.restart

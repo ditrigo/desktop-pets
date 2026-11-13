@@ -1,5 +1,5 @@
 [project]
-name = "desktop-duck-art"
+name = "desktop-pets-art"
 version = "1.0.0"
 requires-python = ">=3.11"
 dependencies = ["pillow>=11,<14", "shapely>=2,<3"]

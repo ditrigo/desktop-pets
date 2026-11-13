@@ -1,7 +1,7 @@
 # Asset provenance and dependencies
 
 The vector and pixel artwork, generated flat parts, Blender duck model and
-rendered atlases were authored for Desktop Duck and are covered by the MIT
+rendered atlases were authored for Desktop Pets and are covered by the MIT
 license at the repository root. The bundled quack WAV is generated locally;
 no downloaded asset pack, stock character or proprietary model is required.
 

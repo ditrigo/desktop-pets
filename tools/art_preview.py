@@ -11,8 +11,8 @@ from artlib import find_model, require
 
 QML = """import QtQuick
 import Quickshell
-import "DuckHit.js" as Hit
-import "DuckCatalog.js" as Catalog
+import "PetHit.js" as Hit
+import "PetCatalog.js" as Catalog
 ShellRoot {
  FloatingWindow {visible:true;implicitWidth:1080;implicitHeight:HEIGHT;color:"#202a36"
  Rectangle {id:sheet;anchors.fill:parent;color:"#202a36"
@@ -20,7 +20,7 @@ ShellRoot {
  Repeater {model:CASES
  delegate:Item {id:cell;required property var modelData;required property int index
  x:index%6*180;y:60+Math.floor(index/6)*182;width:180;height:182
- DuckSprite {id:bird;x:9;y:0;width:162;height:151.2;artStyle:cell.modelData.model;hat:cell.modelData.hat;outfit:cell.modelData.outfit;plumage:cell.modelData.palette;view:cell.modelData.view;mode:cell.modelData.mode;clock:.17;stride:.8;modeTime:.4;direction:cell.modelData.direction;}
+ PetSprite {id:bird;x:9;y:0;width:162;height:151.2;artStyle:cell.modelData.model;hat:cell.modelData.hat;outfit:cell.modelData.outfit;plumage:cell.modelData.palette;view:cell.modelData.view;mode:cell.modelData.mode;clock:.17;stride:.8;modeTime:.4;direction:cell.modelData.direction;}
  property var bands:[]
  Repeater {model:cell.bands;delegate:Rectangle {required property var modelData;x:modelData.x;y:modelData.y;width:modelData.width;height:modelData.height;color:"#e88a91";opacity:.15;}}
  Timer{interval:200;running:GUIDES;onTriggered:cell.bands=Hit.bands(bird.inputPolygons(cell),2);}
@@ -76,7 +76,7 @@ def render(root, data, key, kind, output, *, targets=None, guides=False, live=Fa
     )
     output = output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="duck-art-preview-") as temp:
+    with tempfile.TemporaryDirectory(prefix="pet-art-preview-") as temp:
         folder = Path(temp)
         for file in (root / "src").iterdir():
             if file.suffix in (".qml", ".js"):

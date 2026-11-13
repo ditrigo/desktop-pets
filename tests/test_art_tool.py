@@ -17,12 +17,12 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import artlib as lib  # noqa: E402 - import from the working tree
-import duck_art  # noqa: E402 - import from the working tree
+import pet_art  # noqa: E402 - import from the working tree
 
 
 class ArtToolTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix="duck-art-test-")
+        self.temp = tempfile.TemporaryDirectory(prefix="pet-art-test-")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         for path in (ROOT / "src").iterdir():
@@ -36,14 +36,14 @@ class ArtToolTests(unittest.TestCase):
             )
         (self.root / "art/packs").mkdir(parents=True)
         shutil.copy2(ROOT / "art/catalog.json", self.root / "art/catalog.json")
-        cached = ROOT / ".cache/duck-art/hulls"
+        cached = ROOT / ".cache/pet-art/hulls"
         if cached.exists():
-            shutil.copytree(cached, self.root / ".cache/duck-art/hulls")
+            shutil.copytree(cached, self.root / ".cache/pet-art/hulls")
         lib.build(self.root)
 
     def cli(self, *args):
         with contextlib.redirect_stdout(io.StringIO()):
-            return duck_art.main(["--root", str(self.root), *map(str, args)])
+            return pet_art.main(["--root", str(self.root), *map(str, args)])
 
     def custom(self, kind="hat", key="test-cap", **options):
         path = lib.new_pack(self.root, kind, key, "Мой " + key, **options)
@@ -54,9 +54,9 @@ class ArtToolTests(unittest.TestCase):
         return {
             name: (self.root / name).read_bytes()
             for name in [
-                "src/DuckCatalog.js",
-                "src/DuckLooks.js",
-                "src/DuckModel.js",
+                "src/PetCatalog.js",
+                "src/PetLooks.js",
+                "src/PetModel.js",
                 "src/assets/custom/catalog.json",
             ]
         }
@@ -71,8 +71,8 @@ class ArtToolTests(unittest.TestCase):
             next(x for x in data["looks"] if x["key"] == "sun-look")["models"],
             ["pixel", "voxel", "sunbird"],
         )
-        self.assertIn("sunbird", (self.root / "src/DuckModel.js").read_text())
-        self.assertIn("sun-look", (self.root / "src/DuckLooks.js").read_text())
+        self.assertIn("sunbird", (self.root / "src/PetModel.js").read_text())
+        self.assertIn("sun-look", (self.root / "src/PetLooks.js").read_text())
         self.assertEqual(cache.misses, 0)
 
     def test_unchanged_build_uses_cache_and_keeps_generated_mtimes(self):
@@ -118,7 +118,7 @@ class ArtToolTests(unittest.TestCase):
 
         def fail_once(path, contents):
             nonlocal failed
-            if path == self.root / "src/DuckLooks.js" and not failed:
+            if path == self.root / "src/PetLooks.js" and not failed:
                 failed = True
                 raise OSError("simulated filesystem failure")
             return original(path, contents)
@@ -169,7 +169,7 @@ class ArtToolTests(unittest.TestCase):
         with zipfile.ZipFile(archive, "w") as file:
             file.writestr("../escaped", "bad")
         with self.assertRaisesRegex(lib.ArtError, "escapes"):
-            duck_art.unpack(archive, self.root / "extract")
+            pet_art.unpack(archive, self.root / "extract")
         self.assertFalse((self.root / "escaped").exists())
 
     def test_export_import_and_remove_preserve_editable_sources(self):
@@ -257,12 +257,12 @@ class ArtToolTests(unittest.TestCase):
         test = self.root / "src/tst_custom.qml"
         test.write_text("""import QtQuick
 import QtTest
-import "." as Duck
-import "DuckModel.js" as Model
-import "DuckLooks.js" as Looks
-import "DuckCatalog.js" as Catalog
+import "." as Pet
+import "PetModel.js" as Model
+import "PetLooks.js" as Looks
+import "PetCatalog.js" as Catalog
 Rectangle {width:240;height:224;color:"#202a36"
- Duck.DuckSprite{id:bird;width:240;height:224;hat:"sun-cap";outfit:"sun-coat";artStyle:"sunbird";}
+ Pet.PetSprite{id:bird;width:240;height:224;hat:"sun-cap";outfit:"sun-coat";artStyle:"sunbird";}
  TestCase {name:"CustomAssets";when:windowShown
  function test_settings_and_all_renderers(){
   for(var key of ["sunbird","pixel","voxel","blockbird"]){

@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const model = vm.createContext({Math, Object, Number, Array, JSON, isFinite, Error});
-vm.runInContext(fs.readFileSync(path.join(__dirname, '../src/DuckModel.js'), 'utf8'), model);
+vm.runInContext(fs.readFileSync(path.join(__dirname, '../src/PetModel.js'), 'utf8'), model);
 const cfg = model.settings({});
 const monitor = {id: 0, x: -85, y: 0, reserved: [0, 26, 0, 0], activeWorkspace: {id: 2}, specialWorkspace: {id: 0}};
 const client = {address: 'window', monitor: 0, mapped: true, hidden: false, workspace: {id: 2}, at: [15, 220], size: [600, 500], fullscreen: 0};
@@ -251,7 +251,7 @@ function loadPure(name) {
 }
 
 test('host-owned tooltips receive escaped user text',()=>{
-    const text=loadPure('DuckText.js');
+    const text=loadPure('PetText.js');
     for(const value of ['<img src="https://example.invalid/tracker">',"<b>duck & friends</b>","\"'<script>bad</script>"]){
         const escaped=text.escapeMarkup(value);
         assert.equal(escaped.includes('<'),false);
@@ -261,7 +261,7 @@ test('host-owned tooltips receive escaped user text',()=>{
     assert.equal(text.escapeMarkup('Ducky'),'Ducky');
 });
 test('command policy preserves maintenance during pause and reports environmental blocks',()=>{
-    const p=loadPure('DuckPolicy.js'),state={ready:true,enabled:true,visible:true,hasScene:true,paused:true,dragging:false,locked:false};
+    const p=loadPure('PetPolicy.js'),state={ready:true,enabled:true,visible:true,hasScene:true,paused:true,dragging:false,locked:false};
     assert.equal(p.blocked('clear',state),'');assert.equal(p.blocked('remember',state),'');assert.equal(p.blocked('dance',state),'paused');
     assert.equal(p.blocked('wake',state),'');state.locked=true;assert.equal(p.blocked('wake',state),'locked');
     assert.equal(p.blocked('wat',state),'unknown action');state.locked=false;state.paused=false;state.dragging=true;assert.equal(p.blocked('feed',state),'dragging');
@@ -282,7 +282,7 @@ test('fixed monitor survives focus changes and falls back after hotplug',()=>{
 });
 
 test('wardrobe presets change only accessories and return independent patches',()=>{
-    const looks=loadPure('DuckLooks.js');
+    const looks=loadPure('PetLooks.js');
     for(const entry of looks.options){
         const patch=looks.patch(entry.key);assert.deepEqual(Object.keys(patch).sort(),['hat','outfit']);
         const before=model.settings({artStyle:'pixel',palette:'white',name:'Утя',size:96});
@@ -293,8 +293,8 @@ test('wardrobe presets change only accessories and return independent patches',(
 });
 
 test('all flat clothes survive settings, saved looks and renderer switches',()=>{
-    const looks=loadPure('DuckLooks.js');
-    const catalog=loadPure('DuckCatalog.js').data;
+    const looks=loadPure('PetLooks.js');
+    const catalog=loadPure('PetCatalog.js').data;
     assert.deepEqual(Array.from(looks.hats,h=>h.key).filter(k=>k!=='none').sort(),Array.from(catalog.hats,h=>h.key).sort());
     assert.deepEqual(Array.from(looks.outfits,o=>o.key).filter(k=>k!=='none').sort(),Array.from(catalog.outfits,o=>o.key).sort());
     for(const look of looks.options){

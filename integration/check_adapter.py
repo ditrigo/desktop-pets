@@ -59,7 +59,7 @@ with tempfile.TemporaryDirectory(prefix="duck-adapter-") as tmp:
             1,
         )
     )
-    (p / "DuckTranslations.qml").symlink_to(ROOT / "src/DuckTranslations.qml")
+    (p / "PetTranslations.qml").symlink_to(ROOT / "src/PetTranslations.qml")
     (p / "HyprlandAdapter.qml").write_text(source)
     shutil.copy2(ROOT / "src/WorldModel.js", p / "WorldModel.js")
     (p / "HyprRequest.qml").write_text(FAKE)

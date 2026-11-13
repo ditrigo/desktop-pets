@@ -211,15 +211,15 @@ def run_case(case):
         for source in SOURCE.iterdir():
             if source.suffix in (".qml", ".js") and source.name not in (
                 "BarWidget.qml",
-                "DuckSettings.qml",
-                "DuckAppearancePicker.qml",
-                "DuckLabel.qml",
-                "DuckSettingRow.qml",
+                "PetSettings.qml",
+                "PetAppearancePicker.qml",
+                "PetLabel.qml",
+                "PetSettingRow.qml",
             ):
                 shutil.copy2(source, p / source.name)
         shutil.copytree(SOURCE / "assets", p / "assets")
         scene = (
-            (p / "DuckScene.qml")
+            (p / "PetScene.qml")
             .read_text()
             .replace(
                 "PanelWindow {",
@@ -237,7 +237,7 @@ def run_case(case):
             )
             + "\n"
         )
-        (p / "DuckScene.qml").write_text(scene)
+        (p / "PetScene.qml").write_text(scene)
         service = (
             (p / "Service.qml")
             .read_text()
@@ -249,7 +249,7 @@ def run_case(case):
         )
         (p / "Service.qml").write_text(service)
         (p / "HyprlandAdapter.qml").write_text(FAKE_ADAPTER)
-        (p / "DuckWindow.qml").write_text(
+        (p / "PetWindow.qml").write_text(
             "import Quickshell\nScope {property var controller:null;}\n"
         )
         (p / "settings.json").write_text(
@@ -259,7 +259,7 @@ def run_case(case):
                         "layout": {
                             "right": [
                                 {
-                                    "id": "ditrigo.desktop-duck",
+                                    "id": "ditrigo.desktop-pets",
                                     "enabled": True,
                                     "reducedMotion": True,
                                     "artStyle": "pixel",

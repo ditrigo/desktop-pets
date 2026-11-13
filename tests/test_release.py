@@ -51,7 +51,7 @@ class ReleaseTests(unittest.TestCase):
                     for entry in manifest["entryPoints"].values():
                         self.assertIn(entry, names)
                     if "-source" in item["name"]:
-                        self.assertIn("duck-art", names)
+                        self.assertIn("pet-art", names)
                         self.assertIn("uv.lock", names)
                         self.assertIn("tools/artlib.py", names)
                     else:

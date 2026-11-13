@@ -1,7 +1,7 @@
 # Contributing
 
 Use a separate source checkout for development. Do not edit packaged Omarchy
-files under `/usr/share/omarchy/`. Preserve `ditrigo.desktop-duck` and existing
+files under `/usr/share/omarchy/`. Preserve `ditrigo.desktop-pets` and existing
 settings keys so upgrades retain pet state and personal looks.
 
 ## Layout and tools
@@ -15,7 +15,7 @@ Runtime code belongs in `src/`; original art in `art/`; build utilities in
 - Quickshell and Qt Test run renderer checks.
 - The full suite also needs Omarchy's QML modules and Blender.
 
-`duck-art` installs its Python environment in the user's cache. If invoking
+`pet-art` installs its Python environment in the user's cache. If invoking
 uv directly, set `UV_PROJECT_ENVIRONMENT` outside the checkout: Omarchy rejects
 symlinks anywhere in a plugin directory, including a virtual environment.
 
@@ -55,8 +55,8 @@ opt-in with `--live`.
 - Keep user-visible strings in `src/i18n/en.json` and `ru.json` with matching keys.
 - Use `Text.PlainText` for plugin-owned text. Escape markup before host-owned
   tooltip sinks; add regression coverage for untrusted text.
-- Do not hand-edit generated catalogue or geometry files. Run `./duck-art build`
-  or `./duck-art build --rebuild-flat` after changing source metadata/artwork.
+- Do not hand-edit generated catalogue or geometry files. Run `./pet-art build`
+  or `./pet-art build --rebuild-flat` after changing source metadata/artwork.
 - Keep subprocess arguments as arrays and asset packs data-only.
 - Add targeted tests for behavior changes and review screenshots for visual changes.
 

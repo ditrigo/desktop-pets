@@ -1,5 +1,5 @@
 import QtQuick
-import "DuckModel.js" as Model
+import "PetModel.js" as Model
 
 MouseArea {
     id: mouse

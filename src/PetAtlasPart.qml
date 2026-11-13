@@ -1,6 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import "DuckAtlas.js" as Atlas
+import "PetAtlas.js" as Atlas
 
 // A cropped cell from a cached PNG atlas. Changing pose moves texture geometry;
 // it does not decode another image or start an animation timer.

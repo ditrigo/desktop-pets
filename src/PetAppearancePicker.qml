@@ -4,7 +4,7 @@ import qs.Commons as Commons
 
 Column {
     id: picker
-    DuckTranslations {
+    PetTranslations {
         id: strings
     }
     required property var controller
@@ -15,7 +15,7 @@ Column {
     property string previewView: "threeQuarter"
     readonly property var cfg: controller.config
     spacing: 8
-    DuckLabel {
+    PetLabel {
         text: picker.heading
         font.bold: true
     }
@@ -43,7 +43,7 @@ Column {
                     border.width: card.selected || card.activeFocus ? 2 : 1
                     border.color: card.selected || card.activeFocus ? Commons.Color.accent : Qt.rgba(.5, .5, .5, .25)
                 }
-                DuckSprite {
+                PetSprite {
                     width: 78
                     height: 73
                     x: (parent.width - width) / 2
@@ -56,7 +56,7 @@ Column {
                     hat: picker.settingKey === "hat" ? card.modelData.key : picker.cfg.hat
                     outfit: picker.settingKey === "outfit" ? card.modelData.key : picker.cfg.outfit
                 }
-                DuckLabel {
+                PetLabel {
                     anchors {
                         left: parent.left
                         right: parent.right

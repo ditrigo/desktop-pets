@@ -1,15 +1,15 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "DuckModel.js" as Model
+import "PetModel.js" as Model
 
 // The shell owns writing. This observer confirms persistence by fresh disk reads.
 Scope {
     id:store
-    DuckTranslations { id: strings }
+    PetTranslations { id: strings }
     property var shell:null
     property string path:""
-    property string pluginId:"ditrigo.desktop-duck"
+    property string pluginId:"ditrigo.desktop-pets"
     property var disk:({})
     property var pending:({})
     readonly property var settings:Object.assign({},disk,pending)

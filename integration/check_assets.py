@@ -35,7 +35,7 @@ def validate(root=ROOT):
     c = json.loads((root / "src/assets/duck-contract.json").read_text())
     assert c["version"] == 1, "unsupported graphics contract"
     assert c["canvas"] == [120, 112] and len(set(c["modes"])) == len(c["modes"])
-    assert (root / "src/DuckGeometry.js").read_text() == generated(c), (
+    assert (root / "src/PetGeometry.js").read_text() == generated(c), (
         "stale geometry JS"
     )
     flat = json.loads((root / "src/assets/duck2d/manifest.json").read_text())
@@ -178,7 +178,7 @@ def validate(root=ROOT):
         and list(m["views"]) == c["views"]
         and m["wingAngles"] == c["wingAngles"]
     )
-    atlas_js = (root / "src/DuckAtlas.js").read_text()
+    atlas_js = (root / "src/PetAtlas.js").read_text()
     assert json.loads(atlas_js.split("var data = ", 1)[1].strip().rstrip(";")) == m, (
         "stale atlas JS"
     )
@@ -248,5 +248,5 @@ if __name__ == "__main__":
         (ROOT / "src/assets/duck-contract.json").write_text(
             json.dumps(c, indent=2) + "\n"
         )
-        (ROOT / "src/DuckGeometry.js").write_text(generated(c))
+        (ROOT / "src/PetGeometry.js").write_text(generated(c))
     validate()

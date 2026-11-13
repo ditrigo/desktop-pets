@@ -1,11 +1,11 @@
 import QtQuick
 import QtTest
-import "../src" as Duck
-import "../src/DuckGeometry.js" as Geometry
+import "../src" as Pet
+import "../src/PetGeometry.js" as Geometry
 
 Rectangle {
     width:240;height:224;color:"#202a36"
-    Duck.DuckSprite{id:bird;width:240;height:224;artStyle:"vector";}
+    Pet.PetSprite{id:bird;width:240;height:224;artStyle:"vector";}
     TestCase {
         name:"FlatWardrobe"
         when:windowShown

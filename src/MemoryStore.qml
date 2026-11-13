@@ -1,11 +1,11 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "DuckModel.js" as Model
+import "PetModel.js" as Model
 
 Scope {
     id: store
-    DuckTranslations { id: strings }
+    PetTranslations { id: strings }
     property string directory: ""
     property var profile: Model.memory({})
     property bool loaded: false

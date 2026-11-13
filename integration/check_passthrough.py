@@ -16,12 +16,12 @@ ShellRoot {id:probeRoot;
  property int under:0
  property int duck:0
  PanelWindow {id:bottom;anchors{left:true;top:true;}margins{left:100;top:100;}implicitWidth:400;implicitHeight:300;color:"#243240";exclusionMode:ExclusionMode.Ignore;WlrLayershell.layer:WlrLayer.Top;WlrLayershell.namespace:"duck-click-test-under"
- Text{anchors.centerIn:parent;text:"Desktop Duck · click routing test";color:"white"}
+ Text{anchors.centerIn:parent;text:"Desktop Pets · click routing test";color:"white"}
  MouseArea{anchors.fill:parent;onClicked:probeRoot.under++;}
  }
  PanelWindow {id:top;anchors{left:true;top:true;}margins{left:100;top:100;}implicitWidth:400;implicitHeight:300;color:"transparent";exclusionMode:ExclusionMode.Ignore;WlrLayershell.layer:WlrLayer.Overlay;WlrLayershell.namespace:"duck-click-test"
- mask:DuckSilhouette{id:shape;birdSprite:bird;target:top.contentItem;}
- DuckSprite{id:bird;x:100;y:60;width:200;height:186.67;artStyle:"pixel";hat:"wizard";view:"front";animate:false;}
+ mask:PetSilhouette{id:shape;birdSprite:bird;target:top.contentItem;}
+ PetSprite{id:bird;x:100;y:60;width:200;height:186.67;artStyle:"pixel";hat:"wizard";view:"front";animate:false;}
  MouseArea{anchors.fill:parent;onClicked:probeRoot.duck++;}
  Timer{interval:100;running:true;onTriggered:shape.update();}
  }

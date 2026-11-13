@@ -1,16 +1,16 @@
-# Desktop Duck 1.0.0
+# Desktop Pets 1.0.0
 
 [English](../../README.md) · [Мастерская моделей и одежды](ART-TOOL.md)
 
-Интерактивная утка для Omarchy Quattro и Hyprland: гуляет по краям окон,
-ест корм, играет с мячом и реагирует на поглаживания. Есть классическая,
+Настольные питомцы для Omarchy Quattro и Hyprland. Первый питомец в 1.0.0 —
+утка: гуляет по краям окон, ест корм, играет с мячом и реагирует на поглаживания. Есть классическая,
 пиксельная и воксельная модели, три оперения, 12 головных уборов,
 10 вариантов одежды и 14 готовых комплектов.
 
 ## Установка
 
 ```sh
-omarchy plugin add https://github.com/ditrigo/omarchy-desktop-duck.git --enable
+omarchy plugin add https://github.com/ditrigo/desktop-pets.git --enable
 ```
 
 Для распакованного релиза или отдельной рабочей копии:
@@ -19,7 +19,7 @@ omarchy plugin add https://github.com/ditrigo/omarchy-desktop-duck.git --enable
 ./install.sh
 ```
 
-Постоянный ID — `ditrigo.desktop-duck`. Кнопка появляется справа на панели.
+Постоянный ID — `ditrigo.desktop-pets`. Кнопка появляется справа на панели.
 Установщик делает резервную копию и сохраняет настройки, имя и коллекцию.
 Он не заменяет Git-установку из другой папки и не требует перезапуска оболочки.
 
@@ -49,25 +49,25 @@ omarchy plugin add https://github.com/ditrigo/omarchy-desktop-duck.git --enable
 ## Обновление и удаление
 
 ```sh
-omarchy plugin update ditrigo.desktop-duck
-omarchy plugin disable ditrigo.desktop-duck
-omarchy plugin enable ditrigo.desktop-duck
-omarchy plugin remove ditrigo.desktop-duck
+omarchy plugin update ditrigo.desktop-pets
+omarchy plugin disable ditrigo.desktop-pets
+omarchy plugin enable ditrigo.desktop-pets
+omarchy plugin remove ditrigo.desktop-pets
 ```
 
 Перед заменой изменённой рабочей копии экспортируйте пользовательские пакеты.
-Память питомца остаётся в `~/.local/state/omarchy-desktop-duck/`, резервные копии —
+Память питомца остаётся в `~/.local/state/desktop-pets/`, резервные копии —
 в её подпапке `backups/`. Удаление плагина не стирает эту память.
 
 ## Свои модели и одежда
 
-Исходный релиз содержит инструмент `duck-art`:
+Исходный релиз содержит инструмент `pet-art`:
 
 ```sh
-./duck-art new model my-duck --label "Моя утка" --base vector
-./duck-art new outfit my-coat --label "Моя одежда" --template raincoat
-./duck-art preview my-coat --guides
-./duck-art build --install
+./pet-art new model my-duck --label "Моя утка" --base vector
+./pet-art new outfit my-coat --label "Моя одежда" --template raincoat
+./pet-art preview my-coat --guides
+./pet-art build --install
 ```
 
 [Полная инструкция](ART-TOOL.md). Окружение Python хранится в кеше пользователя,

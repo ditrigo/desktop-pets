@@ -1,20 +1,28 @@
 # Architecture
 
+Desktop Pets separates shared runtime components (`Pet*`) from the first
+character's artwork (`src/assets/duck*`, `art/flat/`, `art/blender/`). Version
+1.0.0 ships one character, the duck, in three visual styles. The catalogue and
+`pet-art` packs select model geometry, rendering and compatible clothing.
+The current templates use the duck's joint and animation contract; additional
+characters can supply compatible artwork, while different rigs or behaviors
+require extending that contract. Multiple simultaneous pets are outside 1.0.0.
+
 The repository root is the Omarchy installation unit. `manifest.json` points
 to `src/BarWidget.qml` and `src/Service.qml`; a git clone works without building
 art or running an installation hook. Built assets and generated metadata are committed.
 
 | Area | Responsibility |
 | --- | --- |
-| `BarWidget.qml`, `DuckWindow.qml`, `DuckSettings.qml` | Bar lifecycle and user interface |
+| `BarWidget.qml`, `PetWindow.qml`, `PetSettings.qml` | Bar lifecycle and user interface |
 | `Service.qml` | Own-service facade, IPC, settings, memory and scene coordination |
-| `DuckModel.js`, `DuckPolicy.js`, `WorldModel.js` | Pure simulation, action policy and compositor data normalization |
-| `DuckScene.qml`, `DuckInput.qml` | Scene state, input capture, placement and one motion clock |
-| `DuckSprite.qml`, flat/atlas renderers | Model selection and joint-based presentation |
-| `DuckHit.js`, `DuckSilhouette.qml` | Shared transformed geometry for reactions and input masks |
-| `DuckSettingsStore.qml`, `MemoryStore.qml` | Confirmed settings writes and checkpoint/backup persistence |
+| `PetModel.js`, `PetPolicy.js`, `WorldModel.js` | Pure simulation, action policy and compositor data normalization |
+| `PetScene.qml`, `PetInput.qml` | Scene state, input capture, placement and one motion clock |
+| `PetSprite.qml`, flat/atlas renderers | Model selection and joint-based presentation |
+| `PetHit.js`, `PetSilhouette.qml` | Shared transformed geometry for reactions and input masks |
+| `PetSettingsStore.qml`, `MemoryStore.qml` | Confirmed settings writes and checkpoint/backup persistence |
 | `HyprlandAdapter.qml`, `HyprRequest.qml` | Bounded local IPC and recovery polling |
-| `DuckTranslations.qml`, `i18n/` | Plugin-owned live translations |
+| `PetTranslations.qml`, `i18n/` | Plugin-owned live translations |
 | `tools/artlib.py`, `art/catalog.json`, `art/packs/` | Pack validation and catalogue compilation |
 
 Rendering consumes cached textures and precomputed contours. It does not start

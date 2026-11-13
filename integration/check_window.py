@@ -19,7 +19,7 @@ start = source.index(" FloatingWindow {visible:true;")
 end = source.index(" Timer{interval:200;", start)
 source = (
     source[:start]
-    + """ DuckWindow{id:window;controller:host;}
+    + """ PetWindow{id:window;controller:host;}
 """
     + source[end:]
 )
@@ -53,10 +53,10 @@ with tempfile.TemporaryDirectory(prefix="duck-window-") as tmp:
     p = Path(tmp)
     dependencies(p)
     for f in (ROOT / "src").iterdir():
-        if f.suffix in (".qml", ".js") and f.name != "DuckWindow.qml":
+        if f.suffix in (".qml", ".js") and f.name != "PetWindow.qml":
             (p / f.name).symlink_to(f)
     window = (
-        (ROOT / "src/DuckWindow.qml")
+        (ROOT / "src/PetWindow.qml")
         .read_text()
         .replace("PanelWindow {", "FloatingWindow {", 1)
         .replace(
@@ -70,7 +70,7 @@ with tempfile.TemporaryDirectory(prefix="duck-window-") as tmp:
         for line in window.splitlines()
         if not line.strip().startswith(("exclusionMode:", "WlrLayershell."))
     )
-    (p / "DuckWindow.qml").write_text(window)
+    (p / "PetWindow.qml").write_text(window)
     (p / "assets").symlink_to(ROOT / "src/assets")
 
     (p / "shell.qml").write_text(source.replace("OUTPUT", json.dumps(str(OUT))))

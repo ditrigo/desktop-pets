@@ -6,7 +6,7 @@ import "WorldModel.js" as World
 
 Scope {
     id: adapter
-    DuckTranslations { id: strings }
+    PetTranslations { id: strings }
     property bool enabled: false
     property bool economy:false
     property bool interacting:false

@@ -23,7 +23,7 @@ ShellRoot {
  function check(v,label){checks++;if(!v){failed++;console.error("ASSERT "+label);}}
  FileView{id:disk;path:Qt.resolvedUrl("settings.json");watchChanges:true;onFileChanged:reload();}
  QtObject{id:host;function updateEntryInline(id,settings){if(!test.drop)test.writes.push(JSON.parse(JSON.stringify(settings)));return true;}}
- DuckSettingsStore{id:store;shell:host;path:Qt.resolvedUrl("settings.json").toString();timeoutMs:800;}
+ PetSettingsStore{id:store;shell:host;path:Qt.resolvedUrl("settings.json").toString();timeoutMs:800;}
  function persist(entry){var d=JSON.parse(disk.text());d.bar.layout.right[0]=entry;disk.setText(JSON.stringify(d));}
  Timer{interval:120;running:true;repeat:true;onTriggered:{
   test.ticks++;
@@ -54,13 +54,13 @@ ShellRoot {
 with tempfile.TemporaryDirectory(prefix="duck-persist-") as tmp:
     p = Path(tmp)
     dependencies(p)
-    for name in ["DuckSettingsStore.qml", "DuckModel.js", "DuckTranslations.qml"]:
+    for name in ["PetSettingsStore.qml", "PetModel.js", "PetTranslations.qml"]:
         (p / name).symlink_to(ROOT / "src" / name)
     (p / "settings.json").write_text(
         json.dumps(
             {
                 "bar": {
-                    "layout": {"right": [{"id": "ditrigo.desktop-duck", "hat": "chef"}]}
+                    "layout": {"right": [{"id": "ditrigo.desktop-pets", "hat": "chef"}]}
                 }
             }
         )

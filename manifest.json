@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "ditrigo.desktop-duck",
-  "name": "Desktop Duck",
+  "id": "ditrigo.desktop-pets",
+  "name": "Desktop Pets",
   "version": "1.0.0",
   "author": "ditrigo",
   "license": "MIT",
-  "description": "An interactive desktop duck with window walking, toys, outfits and custom models.",
+  "description": "Interactive desktop pets with window walking, toys, outfits and custom models. Starts with a duck.",
   "kinds": [
     "bar-widget",
     "service"
@@ -15,7 +15,7 @@
     "service": "src/Service.qml"
   },
   "barWidget": {
-    "displayName": "Desktop Duck",
+    "displayName": "Desktop Pets",
     "category": "Fun",
     "allowMultiple": false,
     "defaultSection": "right",
@@ -49,7 +49,7 @@
       {
         "key": "enabled",
         "type": "boolean",
-        "label": "Show duck"
+        "label": "Show pet"
       },
       {
         "key": "size",
@@ -78,7 +78,7 @@
       {
         "key": "sound",
         "type": "boolean",
-        "label": "Quack with sound"
+        "label": "Pet sounds"
       },
       {
         "key": "hideFullscreen",
@@ -93,7 +93,7 @@
       {
         "key": "name",
         "type": "string",
-        "label": "Duck name"
+        "label": "Pet name"
       },
       {
         "key": "workMode",
@@ -108,7 +108,7 @@
       {
         "key": "artStyle",
         "type": "string",
-        "label": "Duck model"
+        "label": "Pet model"
       },
       {
         "key": "hat",

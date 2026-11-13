@@ -1,7 +1,7 @@
 import QtQuick
 import QtTest
-import "../src" as Duck
-import "../src/DuckModel.js" as Model
+import "../src" as Pet
+import "../src/PetModel.js" as Model
 
 Item {
     id: root
@@ -49,11 +49,11 @@ Item {
     }
     Rectangle {
         width:200;height:180;color:"transparent"
-        Duck.DuckSprite{id:birdSprite;width:200;height:180;artStyle:state.cfg.artStyle;hat:state.cfg.hat;view:state.birdView;mode:state.birdMode;direction:state.birdDirection;animate:false;}
-        Duck.DuckInput {id:input;birdScene:state;}
+        Pet.PetSprite{id:birdSprite;width:200;height:180;artStyle:state.cfg.artStyle;hat:state.cfg.hat;view:state.birdView;mode:state.birdMode;direction:state.birdDirection;animate:false;}
+        Pet.PetInput {id:input;birdScene:state;}
     }
     TestCase {
-        name:"DuckInput"
+        name:"PetInput"
         when:windowShown
         function init() {
             birdSprite.width=200;birdSprite.height=180;

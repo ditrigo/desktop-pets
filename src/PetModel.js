@@ -1,7 +1,7 @@
 // Pure simulation shared by QML and Node. Positions are logical screen pixels.
-// duck-art:keys:start
+// pet-art:keys:start
 var wardrobeKeys = {"artStyle":["vector","pixel","voxel"],"hat":["none","wizard","pirate","santa","explorer","chef","crown","rainhat","detective","beret","straw","tophat","nightcap"],"outfit":["none","scarf","sailor","space","cape","raincoat","trench","apron","overalls","tuxedo","pajamas"]};
-// duck-art:keys:end
+// pet-art:keys:end
 var defaults = {enabled:true, name:"Ducky", size:76, speed:80, personality:"curious", palette:"yellow",
     walkOnWindows:true, followCursor:false, sound:false, bubbles:true, hideFullscreen:true,
     reducedMotion:false, workMode:false, cursorReactions:true, monitorMode:"follow", monitor:"",

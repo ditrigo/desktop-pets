@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a reproducible Desktop Duck problem.
+description: Report a reproducible Desktop Pets problem.
 body:
   - type: textarea
     id: problem

@@ -21,7 +21,7 @@ names. Each palette has side, quarter and front heads/bodies. Covered heads
 omit the crest so feathers do not poke through hats. Resting bodies use their
 own silhouettes. Face expressions are separate layers.
 
-`DuckFlatSprite.qml` owns the joints and render order:
+`PetFlatSprite.qml` owns the joints and render order:
 
 1. Cape behind body; far wing and feet.
 2. Body and fitted uniform, with decorative details clipped to the torso.

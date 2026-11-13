@@ -1,4 +1,4 @@
-"""Build the Desktop Duck master model, wardrobe, rig and sprite source renders.
+"""Build the Desktop Pets master model, wardrobe, rig and sprite source renders.
 
 Run with Blender's Python; integration/build_blender_assets.py packs the renders.
 Axes: +X is the beak, -Y is the near wing, +Z is up. Units are metres only

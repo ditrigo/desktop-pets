@@ -2,12 +2,12 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
-import "DuckModel.js" as Model
+import "PetModel.js" as Model
 
 // Quickshell creates this through its platform factory; qmltypes lists only the abstract interface.
 PanelWindow { // qmllint disable uncreatable-type
     id: scene
-    DuckTranslations { id: strings }
+    PetTranslations { id: strings }
     property var controller: null
     property var targetScreen: null
     screen: targetScreen
@@ -89,7 +89,7 @@ PanelWindow { // qmllint disable uncreatable-type
     anchors {left:true;right:true;top:true;bottom:true}
     color:"transparent"
     exclusionMode:ExclusionMode.Ignore
-    WlrLayershell.namespace:"ditrigo-desktop-duck"
+    WlrLayershell.namespace:"ditrigo-desktop-pets"
     WlrLayershell.layer:WlrLayer.Top
     WlrLayershell.keyboardFocus:placing?WlrKeyboardFocus.Exclusive:WlrKeyboardFocus.None
     visible:!!controller&&controller.ready&&!!targetScreen&&controller.monitorName===targetScreen.name&&cfg.enabled
@@ -98,10 +98,10 @@ PanelWindow { // qmllint disable uncreatable-type
         width:scene.placing?scene.worldWidth:0;height:scene.placing?scene.worldHeight:0
         // Full capture only for an active press/drag; cancellation restores the silhouette.
         Region {width:scene.inputHeld?scene.worldWidth:0;height:scene.inputHeld?scene.worldHeight:0}
-        DuckSilhouette {id:silhouette;birdSprite:sprite;target:scene.contentItem;}
+        PetSilhouette {id:silhouette;birdSprite:sprite;target:scene.contentItem;}
         Region {x:ballItem.x;y:ballItem.y;width:scene.ball?ballItem.width:0;height:scene.ball?ballItem.height:0}
     }
-    function inputRegion(x,y){let p=sprite.mapFromItem(duckInput,x,y);return sprite.hitRegion(p.x,p.y);}
+    function inputRegion(x,y){let p=sprite.mapFromItem(petInput,x,y);return sprite.hitRegion(p.x,p.y);}
     function updateMask(){if(sprite.activeRenderer)silhouette.update();}
     function world() {return {width:worldWidth,height:worldHeight,surfaces:perches,items:items,
         favorite:controller&&targetScreen?controller.profile.favorites[targetScreen.name]:null,
@@ -324,7 +324,7 @@ PanelWindow { // qmllint disable uncreatable-type
         id:hitbox
         x:scene.birdX-width/2;y:scene.birdY-height
         width:scene.cfg.size;height:scene.cfg.size*112/120
-        DuckSprite {
+        PetSprite {
             id:sprite
             anchors.fill:parent
             scale:scene.pressedVisual&&!scene.dragging?.97:1
@@ -334,7 +334,7 @@ PanelWindow { // qmllint disable uncreatable-type
             reducedMotion:scene.cfg.reducedMotion
             animate:scene.runnable&&!scene.cfg.reducedMotion
         }
-        DuckInput {id:duckInput;parent:scene.contentItem;z:1;birdScene:scene;}
+        PetInput {id:petInput;parent:scene.contentItem;z:1;birdScene:scene;}
 
     }
     Rectangle {

@@ -12,12 +12,12 @@ OUT = ROOT / "review" / json.loads((ROOT / "manifest.json").read_text())["versio
 OUT.mkdir(parents=True, exist_ok=True)
 QML = """import QtQuick
 import Quickshell
-import "DuckHit.js" as Hit
+import "PetHit.js" as Hit
 ShellRoot{
  FloatingWindow{visible:true;implicitWidth:1080;implicitHeight:570;color:"#202a36"
  Rectangle{id:sheet;anchors.fill:parent;color:"#202a36"
  Repeater{model:18;delegate:Item{required property int index;x:index%6*180;y:Math.floor(index/6)*190;width:180;height:190
- DuckSprite{id:bird;x:20;y:12;width:140;height:131;artStyle:["vector","pixel","voxel"][Math.floor(parent.index/6)];view:["side","threeQuarter","front"][parent.index%3];hat:parent.index%2?"wizard":"chef";outfit:"scarf";mode:parent.index%6>=3?"fly":"idle";clock:.17;modeTime:.4;animate:true;direction:parent.index%2?-1:1;}
+ PetSprite{id:bird;x:20;y:12;width:140;height:131;artStyle:["vector","pixel","voxel"][Math.floor(parent.index/6)];view:["side","threeQuarter","front"][parent.index%3];hat:parent.index%2?"wizard":"chef";outfit:"scarf";mode:parent.index%6>=3?"fly":"idle";clock:.17;modeTime:.4;animate:true;direction:parent.index%2?-1:1;}
  property var bands:[]
  Timer{interval:100;running:true;onTriggered:parent.bands=Hit.bands(bird.inputPolygons(parent),2);}
  Repeater{model:parent.bands;delegate:Rectangle{required property var modelData;x:modelData.x;y:modelData.y;width:modelData.width;height:modelData.height;color:"#e98174";opacity:.3;}}

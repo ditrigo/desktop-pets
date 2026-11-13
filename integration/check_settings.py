@@ -13,9 +13,9 @@ OUT = ROOT / "review" / json.loads((ROOT / "manifest.json").read_text())["versio
 OUT.mkdir(parents=True, exist_ok=True)
 QML = """import QtQuick
 import Quickshell
-import "DuckModel.js" as Model
-import "DuckPolicy.js" as Policy
-import "DuckLooks.js" as Looks
+import "PetModel.js" as Model
+import "PetPolicy.js" as Policy
+import "PetLooks.js" as Looks
 import qs.Commons as Commons
 ShellRoot {
  id:test
@@ -52,7 +52,7 @@ ShellRoot {
  }
  BarWidget {}
  FloatingWindow {visible:true;implicitWidth:540;implicitHeight:1700;color:Commons.Color.background
- DuckSettings{id:settings;x:20;y:20;width:500;tab:1;controller:host;}
+ PetSettings{id:settings;x:20;y:20;width:500;tab:1;controller:host;}
  }
  Timer{interval:200;running:true;repeat:true;onTriggered:{
   if(test.busy)return;

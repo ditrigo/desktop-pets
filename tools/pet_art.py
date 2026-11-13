@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One entry point for Desktop Duck models, clothing and visual review."""
+"""One entry point for Desktop Pets models, clothing and visual review."""
 
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ def install(root):
     )
     state = (
         Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state"))
-        / "omarchy-desktop-duck"
+        / "desktop-pets"
     )
     target, backup = update(root, config, state, enable=False)
     print(f"Installed: {target}\nBackup: {backup}")
@@ -107,7 +107,7 @@ def rebuild_flat(root):
     """Old artist scripts run in an isolated copy, then publish together."""
     import fcntl
 
-    cache = root / ".cache/duck-art"
+    cache = root / ".cache/pet-art"
     cache.mkdir(parents=True, exist_ok=True)
     with (
         (cache / "build.lock").open("a") as lock,
@@ -139,7 +139,7 @@ def rebuild_flat(root):
         outputs = lib.generated_files(staged, data)
         for name in (
             "src/assets/duck-contract.json",
-            "src/DuckGeometry.js",
+            "src/PetGeometry.js",
             "src/assets/duck2d/manifest.json",
         ):
             outputs[name] = (staged / name).read_bytes()
@@ -152,8 +152,8 @@ def rebuild_flat(root):
 
 def parser():
     result = argparse.ArgumentParser(
-        prog="duck-art",
-        description="Desktop Duck art studio: template → artwork → check → preview → install.",
+        prog="pet-art",
+        description="Desktop Pets art studio: template → artwork → check → preview → install.",
     )
     result.add_argument("--root", type=Path, default=lib.ROOT, help=argparse.SUPPRESS)
     commands = result.add_subparsers(dest="command", required=True)
@@ -251,7 +251,7 @@ def main(argv=None):
         return 0
     if command == "check":
         if args.source:
-            with tempfile.TemporaryDirectory(prefix="duck-art-import-check-") as temp:
+            with tempfile.TemporaryDirectory(prefix="pet-art-import-check-") as temp:
                 unpack(args.source.resolve(), Path(temp))
                 data, cache = lib.check(root, Path(temp))
         else:
@@ -277,7 +277,7 @@ def main(argv=None):
                 outfit=args.outfit,
             )
         elif command == "import":
-            with tempfile.TemporaryDirectory(prefix="duck-art-import-") as temp:
+            with tempfile.TemporaryDirectory(prefix="pet-art-import-") as temp:
                 staged = Path(temp)
                 unpack(args.source.resolve(), staged)
                 data, cache = lib.check(root, staged)
@@ -299,7 +299,7 @@ def main(argv=None):
                     lib.find_model(data, args.key)["renderer"] == "atlas",
                     "An atlas model is required",
                 )
-                previous = Path(tempfile.mkdtemp(prefix="duck-art-blender-backup-"))
+                previous = Path(tempfile.mkdtemp(prefix="pet-art-blender-backup-"))
                 shutil.copytree(created, previous / "pack")
                 spec["label"] = args.label
                 lib.atomic_write(created / "pack.json", lib.encoded(spec))
@@ -318,7 +318,7 @@ def main(argv=None):
                         "--output",
                         str(lib.safe_path(created, spec.get("directory", "model"))),
                         "--raw",
-                        str(root / ".cache/duck-art/blender" / args.key),
+                        str(root / ".cache/pet-art/blender" / args.key),
                     ],
                     check=True,
                 )
@@ -339,7 +339,7 @@ def main(argv=None):
         if previous:
             shutil.rmtree(previous)
         print(
-            f"Created: {created}\nEdit the artwork and pack.json, then run duck-art preview {created.name}"
+            f"Created: {created}\nEdit the artwork and pack.json, then run pet-art preview {created.name}"
         )
         report(data, stats)
         return 0
@@ -377,7 +377,7 @@ def main(argv=None):
         folder = root / "art/packs" / args.key
         lib.files_in(folder)
         lib.identity(lib.read_json(folder / "pack.json"), folder)
-        with tempfile.TemporaryDirectory(prefix="duck-art-export-check-") as temp:
+        with tempfile.TemporaryDirectory(prefix="pet-art-export-check-") as temp:
             lib.compile_catalog(root, Path(temp))
         target = args.output.resolve()
         lib.require(not target.exists(), f"File already exists: {target}")
@@ -393,7 +393,7 @@ def main(argv=None):
         lib.require(folder.is_dir(), "Only custom packs can be removed")
         backup = (
             root
-            / ".cache/duck-art/removed"
+            / ".cache/pet-art/removed"
             / f"{datetime.now():%Y%m%d-%H%M%S-%f}-{args.key}"
         )
         backup.parent.mkdir(parents=True, exist_ok=True)
@@ -505,5 +505,5 @@ if __name__ == "__main__":
         zipfile.BadZipFile,
         subprocess.SubprocessError,
     ) as error:
-        print(f"duck-art: {error}", file=sys.stderr)
+        print(f"pet-art: {error}", file=sys.stderr)
         sys.exit(1)

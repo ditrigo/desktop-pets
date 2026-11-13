@@ -1,24 +1,28 @@
-# Desktop Duck art studio
+# Desktop Pets art studio
+
+Desktop Pets 1.0.0 starts with the duck. Its flat and seven-bone Blender rigs
+provide the first templates; custom characters currently follow that animation
+contract. The catalogue keeps model geometry and wardrobe compatibility in data.
 
 [Русский](docs/ru/ART-TOOL.md)
 
-`duck-art` is one entry point for custom models, hats, clothes and preset looks:
+`pet-art` is one entry point for custom models, hats, clothes and preset looks:
 **template → artwork → validation → preview → installation**. Packs are data-only
 folders under `art/packs/`; the studio generates the catalogue, settings keys,
 interaction contours and compatibility lists without manual QML edits.
 
 The studio is included in the source release. It needs Python 3.11+, uv and
 `rsvg-convert`; previews need Quickshell, and Blender import needs Blender.
-`./duck-art doctor` checks the tools. Python dependencies live outside the
+`./pet-art doctor` checks the tools. Python dependencies live outside the
 plugin directory in the user's cache.
 
 ## Create clothes
 
 ```sh
-./duck-art new hat my-cap --label "My cap" --template santa
-./duck-art new outfit my-coat --label "My coat" --template raincoat
-./duck-art new look my-look --label "My look" --hat my-cap --outfit my-coat
-./duck-art preview my-look --guides
+./pet-art new hat my-cap --label "My cap" --template santa
+./pet-art new outfit my-coat --label "My coat" --template raincoat
+./pet-art new look my-look --label "My look" --hat my-cap --outfit my-coat
+./pet-art preview my-look --guides
 ```
 
 Edit the SVG/PNG files and the single `pack.json` in each new folder. By default,
@@ -26,10 +30,10 @@ clothing templates include classic and pixel variants. Their labels are your
 content and are not translated by the plugin.
 
 ```sh
-./duck-art fit my-cap --model pixel --part hat --rect -30 -64 64 32
-./duck-art preview my-look --models vector,pixel --guides
-./duck-art watch my-look --guides
-./duck-art build --install
+./pet-art fit my-cap --model pixel --part hat --rect -30 -64 64 32
+./pet-art preview my-look --models vector,pixel --guides
+./pet-art watch my-look --guides
+./pet-art build --install
 ```
 
 `fit` sets `X Y width height` in logical units. It applies to every view unless
@@ -46,9 +50,9 @@ while an edit is invalid. Add `--install` to apply each successful edit.
 ## Create a model
 
 ```sh
-./duck-art new model my-duck --label "My duck" --base vector
-./duck-art new outfit my-vest --label "My vest" --template sailor --models my-duck,pixel
-./duck-art preview my-duck
+./pet-art new model my-duck --label "My duck" --base vector
+./pet-art new outfit my-vest --label "My vest" --template sailor --models my-duck,pixel
+./pet-art preview my-duck
 ```
 
 The base can be `vector`, `pixel`, `voxel` or an existing custom model. A flat
@@ -82,9 +86,9 @@ gradients. External resources, scripts, CSS and runtime `clipPath` are rejected.
 ## Blender
 
 ```sh
-./duck-art blender ~/models/my-duck.blend --key my-3d-duck --label "My 3D duck"
-./duck-art preview my-3d-duck
-./duck-art blender ~/models/my-duck.blend --key my-3d-duck --label "My 3D duck" --update
+./pet-art blender ~/models/my-duck.blend --key my-3d-duck --label "My 3D duck"
+./pet-art preview my-3d-duck
+./pet-art blender ~/models/my-duck.blend --key my-3d-duck --label "My 3D duck" --update
 ```
 
 Import requires the compatible seven-bone `DuckRig`, part collections, materials
@@ -97,7 +101,7 @@ rendered, not demonstration animations.
 For an editable atlas accessory template:
 
 ```sh
-./duck-art new hat my-3d-hat --label "My 3D hat" --template explorer --models voxel
+./pet-art new hat my-3d-hat --label "My 3D hat" --template explorer --models voxel
 ```
 
 Its folder contains a PNG atlas and `manifest.json`. Atlas placement uses
@@ -107,30 +111,30 @@ rebuilds contours from the image rather than trusting supplied hulls.
 ## Exchange and removal
 
 ```sh
-./duck-art export my-cap --output ~/my-cap.zip
-./duck-art check ~/my-cap.zip
-./duck-art import ~/my-cap.zip
-./duck-art remove my-cap
+./pet-art export my-cap --output ~/my-cap.zip
+./pet-art check ~/my-cap.zip
+./pet-art import ~/my-cap.zip
+./pet-art remove my-cap
 ```
 
 Import accepts a directory or ZIP with `pack.json` at its root. It validates
 before registering and does not replace an existing key. Required custom base
 models and clothes must already exist in the receiving library. Removal backs
-up sources under `.cache/duck-art/removed/` and is cancelled if another pack
+up sources under `.cache/pet-art/removed/` and is cancelled if another pack
 still depends on the removed resource.
 
 ## Build and install
 
 ```sh
-./duck-art check
-./duck-art build
-./duck-art build --rebuild-flat
-./duck-art install
+./pet-art check
+./pet-art build
+./pet-art build --rebuild-flat
+./pet-art install
 ```
 
 `art/catalog.json` is the built-in source catalogue. Generated runtime files
-are under `src/`: `DuckCatalog.js`, `DuckLooks.js`, settings keys in
-`DuckModel.js` and `assets/custom/`. Do not hand-edit them.
+are under `src/`: `PetCatalog.js`, `PetLooks.js`, settings keys in
+`PetModel.js` and `assets/custom/`. Do not hand-edit them.
 
 Unchanged files reuse cached contours. Identical builds do not rewrite generated
 files; changed assets receive content-addressed paths. Failed builds preserve

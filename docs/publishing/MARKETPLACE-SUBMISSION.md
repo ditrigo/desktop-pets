@@ -6,11 +6,11 @@ Submit after reviewing the release. This file does not submit a listing.
 
 ## Title
 
-`[Plugin]: Desktop Duck`
+`[Plugin]: Desktop Pets`
 
 ## Repository URL
 
-https://github.com/ditrigo/omarchy-desktop-duck
+https://github.com/ditrigo/desktop-pets
 
 ## Category
 
@@ -22,8 +22,8 @@ Quickshell, Hyprland, Games
 
 ## Maintainer notes
 
-Desktop Duck is a bar widget and own-service desktop companion for Omarchy
-Quattro/Hyprland. Version 1.0.0 ships three duck models, fitted outfits,
+Desktop Pets is a bar widget and own-service desktop pet application for Omarchy
+Quattro/Hyprland. Version 1.0.0 starts with a duck in three visual styles, fitted outfits,
 window walking, toys, saved looks and live English/Russian localization.
 
 Installation and removal use the native `omarchy plugin` commands. The

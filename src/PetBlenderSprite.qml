@@ -1,9 +1,9 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import "DuckGeometry.js" as Geometry
-import "DuckAtlas.js" as Atlas
-import "DuckHit.js" as Hit
-import "DuckCatalog.js" as Catalog
+import "PetGeometry.js" as Geometry
+import "PetAtlas.js" as Atlas
+import "PetHit.js" as Hit
+import "PetCatalog.js" as Catalog
 
 Item {
     id: studio
@@ -33,7 +33,7 @@ Item {
     function inputPolygons(target){return Hit.polygons(interactionShapes(),target);}
     function wingPose(angle) {let values=studio.atlas.wingAngles,best=0;for(let i=1;i<values.length;i++)if(Math.abs(values[i]-angle)<Math.abs(values[best]-angle))best=i;return best;}
     function footPose(phase) {return bird.flying||bird.mode==="drag"?3:bird.stepMix<=0?1:Math.sin(phase)*bird.stepMix<-.35?0:Math.sin(phase)*bird.stepMix>.35?2:1;}
-    component Part:DuckAtlasPart {atlasData:studio.atlas;assetRoot:studio.modelSpec.root;}
+    component Part:PetAtlasPart {atlasData:studio.atlas;assetRoot:studio.modelSpec.root;}
     Item {
         width:Geometry.data.canvas[0];height:Geometry.data.canvas[1]
         transform:Scale{xScale:studio.width/Geometry.data.canvas[0];yScale:studio.height/Geometry.data.canvas[1];}
@@ -81,6 +81,6 @@ Item {
                 }
             }
         }
-        DuckEffects {anchors.fill:parent;bird:studio.bird;}
+        PetEffects {anchors.fill:parent;bird:studio.bird;}
     }
 }

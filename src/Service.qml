@@ -3,19 +3,19 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.UPower
-import "DuckModel.js" as Model
+import "PetModel.js" as Model
 import "WorldModel.js" as World
-import "DuckPolicy.js" as Policy
-import "DuckLooks.js" as Looks
+import "PetPolicy.js" as Policy
+import "PetLooks.js" as Looks
 
 Scope {
     id: root
-    DuckTranslations { id: strings }
+    PetTranslations { id: strings }
     property var shell: null
     property var manifest: null
     property string omarchyPath: ""
-    readonly property string pluginId: "ditrigo.desktop-duck"
-    property string stateDirectory: (Quickshell.env("XDG_STATE_HOME") || Quickshell.env("HOME") + "/.local/state") + "/omarchy-desktop-duck"
+    readonly property string pluginId: "ditrigo.desktop-pets"
+    property string stateDirectory: (Quickshell.env("XDG_STATE_HOME") || Quickshell.env("HOME") + "/.local/state") + "/desktop-pets"
     property string settingsPath: (Quickshell.env("XDG_CONFIG_HOME") || Quickshell.env("HOME") + "/.config") + "/omarchy/shell.json"
     readonly property var inlineSettings: settingsStore.settings
     readonly property var userConfig:Model.settings(inlineSettings)
@@ -188,7 +188,7 @@ Scope {
     Component.onDestruction: {checkpoint();memory.flush();shuttingDown=true;}
 
     MemoryStore {id:memory;directory:root.stateDirectory;}
-    DuckSettingsStore{id:settingsStore;path:root.settingsPath;shell:root.shell;}
+    PetSettingsStore{id:settingsStore;path:root.settingsPath;shell:root.shell;}
     HyprlandAdapter {
         id:world
         enabled:root.ready&&root.config.enabled
@@ -226,10 +226,10 @@ Scope {
         onExited:function(code){if(code!==0)root.commandErrorKey="error.sound";}
     }
     Timer {id:speechTimer;interval:3200;onTriggered:{root.speechKey="";root.speechText="";}}
-    Variants {model:Quickshell.screens;delegate:DuckScene{required property var modelData;targetScreen:modelData;controller:root;}}
-    Loader {active:root.opened;sourceComponent:Component{DuckWindow{controller:root;}}}
+    Variants {model:Quickshell.screens;delegate:PetScene{required property var modelData;targetScreen:modelData;controller:root;}}
+    Loader {active:root.opened;sourceComponent:Component{PetWindow{controller:root;}}}
     IpcHandler {
-        target:"desktop-duck"
+        target:"desktop-pets"
         function status():string{return root.status();}
         function diagnostics():string{return root.diagnostics();}
         function action(name:string):string{return root.action(name);}

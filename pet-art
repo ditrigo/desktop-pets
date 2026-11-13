@@ -3,6 +3,6 @@ set -euo pipefail
 task_script="$(readlink -f -- "${BASH_SOURCE[0]}")"
 task_root="$(cd -- "$(dirname -- "$task_script")" && pwd)"
 task_hash="$(printf '%s' "$task_root" | sha256sum)"
-task_cache="${XDG_CACHE_HOME:-$HOME/.cache}/desktop-duck-art"
+task_cache="${XDG_CACHE_HOME:-$HOME/.cache}/desktop-pets-art"
 export UV_PROJECT_ENVIRONMENT="${UV_PROJECT_ENVIRONMENT:-$task_cache/${task_hash:0:16}}"
-exec uv run --frozen --no-dev --project "$task_root" python "$task_root/tools/duck_art.py" "$@"
+exec uv run --frozen --no-dev --project "$task_root" python "$task_root/tools/pet_art.py" "$@"

@@ -28,7 +28,7 @@ def main():
         "UV_PROJECT_ENVIRONMENT",
         str(
             Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
-            / "desktop-duck-art"
+            / "desktop-pets-art"
             / hashlib.sha256(str(ROOT).encode()).hexdigest()[:16]
         ),
     )
@@ -50,7 +50,7 @@ def main():
             "test_*.py",
         ],
     ]
-    commands += [["./duck-art", "check"]]
+    commands += [["./pet-art", "check"]]
     commands += [
         ["python", "integration/" + name + ".py"]
         for name in [

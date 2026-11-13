@@ -1,23 +1,23 @@
-# Мастерская Desktop Duck
+# Мастерская Desktop Pets
 
-`duck-art` — единый инструмент для добавления моделей, головных уборов,
+`pet-art` — единый инструмент для добавления моделей, головных уборов,
 одежды и готовых комплектов. Он создаёт редактируемый шаблон, проверяет
 ресурсы, строит контуры касания, подключает выбор в интерфейсе и показывает
 примерку через настоящий QML-рендер утки.
 
-Запускайте `./duck-art` из репозитория либо `duck-art` из любого каталога,
+Запускайте `./pet-art` из репозитория либо `pet-art` из любого каталога,
 если установлена ссылка в `~/.local/bin/`. Зависимости Python устанавливает
-`uv` в отдельное окружение в кеше пользователя, вне папки плагина. `duck-art doctor` покажет доступность
+`uv` в отдельное окружение в кеше пользователя, вне папки плагина. `pet-art doctor` покажет доступность
 инструментов; для SVG нужен `rsvg-convert`, для примерки — Quickshell,
 для импорта `.blend` — Blender.
 
 ## Быстрый старт: своя одежда
 
 ```sh
-duck-art new hat my-cap --label "Моя шапка" --template santa
-duck-art new outfit my-coat --label "Моя куртка" --template raincoat
-duck-art new look my-look --label "Мой комплект" --hat my-cap --outfit my-coat
-duck-art preview my-look --guides
+pet-art new hat my-cap --label "Моя шапка" --template santa
+pet-art new outfit my-coat --label "Моя куртка" --template raincoat
+pet-art new look my-look --label "Мой комплект" --hat my-cap --outfit my-coat
+pet-art preview my-look --guides
 ```
 
 Готовая графика появится в `art/packs/my-cap/` и `art/packs/my-coat/`.
@@ -26,9 +26,9 @@ duck-art preview my-look --guides
 `pack.json`; править QML, JavaScript, списки настроек или контуры не нужно.
 
 ```sh
-duck-art fit my-cap --model pixel --part hat --rect -30 -64 64 32
-duck-art preview my-look --models vector,pixel --guides
-duck-art watch my-look --guides
+pet-art fit my-cap --model pixel --part hat --rect -30 -64 64 32
+pet-art preview my-look --models vector,pixel --guides
+pet-art watch my-look --guides
 ```
 
 `fit` задаёт `X Y ширина высота` в логических единицах. По умолчанию
@@ -45,8 +45,8 @@ duck-art watch my-look --guides
 последний рабочий каталог, пока редактируемый файл некорректен.
 
 ```sh
-duck-art check
-duck-art build --install
+pet-art check
+pet-art build --install
 ```
 
 Установка сохраняет настройки, выбранную одежду, коллекцию и резервную
@@ -56,8 +56,8 @@ duck-art build --install
 ## Своя модель
 
 ```sh
-duck-art new model my-duck --label "Моя утка" --base vector
-duck-art preview my-duck
+pet-art new model my-duck --label "Моя утка" --base vector
+pet-art preview my-duck
 ```
 
 Базой может быть `vector`, `pixel`, `voxel` или уже добавленная модель.
@@ -89,7 +89,7 @@ duck-art preview my-duck
 отличается, создавайте варианты одежды специально для неё:
 
 ```sh
-duck-art new outfit my-vest --label "Жилет" --template sailor --models my-duck,pixel
+pet-art new outfit my-vest --label "Жилет" --template sailor --models my-duck,pixel
 ```
 
 У каждого варианта собственные графика, размеры источника и посадка.
@@ -108,10 +108,10 @@ duck-art new outfit my-vest --label "Жилет" --template sailor --models my-d
 ## Blender и атласы
 
 ```sh
-duck-art blender ~/models/my-duck.blend --key my-3d-duck --label "Моя 3D-утка"
-duck-art preview my-3d-duck
+pet-art blender ~/models/my-duck.blend --key my-3d-duck --label "Моя 3D-утка"
+pet-art preview my-3d-duck
 # После следующей правки мастера:
-duck-art blender ~/models/my-duck.blend --key my-3d-duck --label "Моя 3D-утка" --update
+pet-art blender ~/models/my-duck.blend --key my-3d-duck --label "Моя 3D-утка" --update
 ```
 
 Импорт сохраняет исходный `.blend` и экспортирует в отдельный пакет.
@@ -129,7 +129,7 @@ duck-art blender ~/models/my-duck.blend --key my-3d-duck --label "Моя 3D-ут
 Отдельный редактируемый предмет атласной одежды тоже можно создать:
 
 ```sh
-duck-art new hat my-3d-hat --label "Моя 3D-шляпа" --template explorer --models voxel
+pet-art new hat my-3d-hat --label "Моя 3D-шляпа" --template explorer --models voxel
 ```
 
 В такой папке находятся PNG-атлас и `manifest.json` с расположением
@@ -139,15 +139,15 @@ duck-art new hat my-3d-hat --label "Моя 3D-шляпа" --template explorer --
 ## Передача и удаление
 
 ```sh
-duck-art export my-cap --output ~/my-cap.zip
-duck-art check ~/my-cap.zip
-duck-art import ~/my-cap.zip
-duck-art remove my-cap
+pet-art export my-cap --output ~/my-cap.zip
+pet-art check ~/my-cap.zip
+pet-art import ~/my-cap.zip
+pet-art remove my-cap
 ```
 
 Импорт принимает ZIP или папку с `pack.json` в корне, проверяет пакет
 до регистрации и не заменяет существующий ключ. Удаление сохраняет
-исходники в `.cache/duck-art/removed/`; если на ресурс ссылается другой
+исходники в `.cache/pet-art/removed/`; если на ресурс ссылается другой
 пакет, удаление отменяется. Зависимости — базовая модель и предметы
 комплекта — должны быть уже добавлены в принимающую библиотеку.
 
@@ -155,11 +155,11 @@ duck-art remove my-cap
 
 `art/catalog.json` — единственный редактируемый каталог встроенных
 моделей, вещей и комплектов. `art/packs/` — пользовательские пакеты.
-`src/DuckCatalog.js`, `src/DuckLooks.js`, ключи в `src/DuckModel.js` и
+`src/PetCatalog.js`, `src/PetLooks.js`, ключи в `src/PetModel.js` и
 `src/assets/custom/` генерируются инструментом.
 
 ```sh
-duck-art build --rebuild-flat
+pet-art build --rebuild-flat
 python integration/verify.py
 ```
 

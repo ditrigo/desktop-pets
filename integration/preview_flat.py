@@ -89,7 +89,7 @@ ShellRoot {
  Text{x:22;y:18;text:TITLE;textFormat:Text.PlainText;color:"#f4e8ce";font.pixelSize:25;font.bold:true}
  Repeater{model:CASES
  delegate:Item {required property var modelData;required property int index;x:(index%6)*180;y:65+Math.floor(index/6)*192;width:180;height:185
- DuckSprite{x:9;y:0;width:162;height:151.2;artStyle:STYLE;plumage:parent.modelData.palette||"yellow";view:parent.modelData.view||"threeQuarter";hat:parent.modelData.hat||"none";outfit:parent.modelData.outfit||"none";mode:parent.modelData.mode||"idle";clock:.17;stride:.8;modeTime:.4;}
+ PetSprite{x:9;y:0;width:162;height:151.2;artStyle:STYLE;plumage:parent.modelData.palette||"yellow";view:parent.modelData.view||"threeQuarter";hat:parent.modelData.hat||"none";outfit:parent.modelData.outfit||"none";mode:parent.modelData.mode||"idle";clock:.17;stride:.8;modeTime:.4;}
  Text{anchors.horizontalCenter:parent.horizontalCenter;y:160;text:parent.modelData.label;textFormat:Text.PlainText;color:"#e5d7ba";font.pixelSize:13}
  }
  }

@@ -13,11 +13,11 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         width: Math.max(80, parent.width - control.width - 20)
         spacing: 4
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: row.label
         }
-        DuckLabel {
+        PetLabel {
             width: parent.width
             text: row.detail
             visible: text !== ""

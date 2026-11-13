@@ -5,7 +5,7 @@ under `src/i18n/` and use identical stable keys. Omarchy's
 `qs.Commons.Translations` reads the system language and updates bindings live.
 There is no independent plugin language setting.
 
-Use `DuckTranslations { id: strings }` and call `strings.t("key")` directly
+Use `PetTranslations { id: strings }` and call `strings.t("key")` directly
 from a binding. Use complete sentences with `%1` placeholders, not fragments.
 Counts use `strings.tn("key", count)` and `Commons.I18n.formatNumber(count)`.
 Russian plural entries include `one`, `few`, `many` and `other`.
