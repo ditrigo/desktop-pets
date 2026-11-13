@@ -23,7 +23,7 @@ Use English or Russian catalogs only for plugin-owned text; custom names and
 labels remain data. Text is plain in plugin-owned UI, and markup is escaped
 before passing user-controlled values to shell-owned tooltips.
 
-For a vulnerability, use the repository's private GitHub vulnerability reporting
-feature when enabled, or contact the maintainer through their GitHub profile.
+For a vulnerability, use
+[private vulnerability reporting](https://github.com/ditrigo/omarchy-desktop-duck/security/advisories/new).
 Do not include credentials, personal shell configuration or private logs in
 public reports. Feature requests and ordinary visual bugs can use normal issues.
