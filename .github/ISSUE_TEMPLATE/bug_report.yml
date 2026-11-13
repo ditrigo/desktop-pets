@@ -1,0 +1,21 @@
+name: Bug report
+description: Report a reproducible Desktop Duck problem.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include expected behavior and reproduction steps.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Plugin and Omarchy versions
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Relevant logs or screenshots
+      description: Remove personal data, window titles and local paths before posting.

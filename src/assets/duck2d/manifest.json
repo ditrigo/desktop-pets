@@ -1,0 +1,84 @@
+{
+  "canvas": [
+    120,
+    112
+  ],
+  "pixelCanvas": [
+    60,
+    56
+  ],
+  "head": [
+    64,
+    58
+  ],
+  "hat": [
+    64,
+    32
+  ],
+  "neckwear": [
+    64,
+    80
+  ],
+  "headAnchors": {
+    "side": [
+      78,
+      64
+    ],
+    "threeQuarter": [
+      72,
+      64
+    ],
+    "front": [
+      60,
+      64
+    ]
+  },
+  "hatOffset": [
+    -30,
+    -66
+  ],
+  "pixelHatOffset": [
+    -30,
+    -64
+  ],
+  "neckwearOffset": [
+    -30,
+    -48
+  ],
+  "hats": [
+    "wizard",
+    "pirate",
+    "santa",
+    "explorer",
+    "chef",
+    "crown",
+    "rainhat",
+    "detective",
+    "beret",
+    "straw",
+    "tophat",
+    "nightcap"
+  ],
+  "outfits": [
+    "scarf",
+    "cape",
+    "sailor",
+    "space",
+    "raincoat",
+    "trench",
+    "apron",
+    "overalls",
+    "tuxedo",
+    "pajamas"
+  ],
+  "uniforms": [
+    "sailor",
+    "space",
+    "raincoat",
+    "trench",
+    "apron",
+    "overalls",
+    "tuxedo",
+    "pajamas"
+  ]
+}

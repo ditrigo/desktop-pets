@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "id": "ditrigo.desktop-duck",
+  "name": "Desktop Duck",
+  "version": "1.0.0",
+  "author": "ditrigo",
+  "license": "MIT",
+  "description": "An interactive desktop duck with window walking, toys, outfits and custom models.",
+  "kinds": [
+    "bar-widget",
+    "service"
+  ],
+  "entryPoints": {
+    "barWidget": "src/BarWidget.qml",
+    "service": "src/Service.qml"
+  },
+  "barWidget": {
+    "displayName": "Desktop Duck",
+    "category": "Fun",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "enabled": true,
+      "size": 76,
+      "speed": 80,
+      "personality": "curious",
+      "palette": "yellow",
+      "walkOnWindows": true,
+      "followCursor": false,
+      "sound": false,
+      "bubbles": true,
+      "hideFullscreen": true,
+      "reducedMotion": false,
+      "name": "Ducky",
+      "workMode": false,
+      "cursorReactions": true,
+      "monitorMode": "follow",
+      "monitor": "",
+      "artStyle": "vector",
+      "hat": "none",
+      "outfit": "none",
+      "powerProfile": "normal",
+      "quietHours": false,
+      "quietStart": "22:00",
+      "quietEnd": "08:00",
+      "quietMode": "work"
+    },
+    "schema": [
+      {
+        "key": "enabled",
+        "type": "boolean",
+        "label": "Show duck"
+      },
+      {
+        "key": "size",
+        "type": "number",
+        "label": "Size",
+        "min": 48,
+        "max": 144
+      },
+      {
+        "key": "speed",
+        "type": "number",
+        "label": "Speed",
+        "min": 25,
+        "max": 180
+      },
+      {
+        "key": "walkOnWindows",
+        "type": "boolean",
+        "label": "Walk on windows"
+      },
+      {
+        "key": "followCursor",
+        "type": "boolean",
+        "label": "Follow cursor"
+      },
+      {
+        "key": "sound",
+        "type": "boolean",
+        "label": "Quack with sound"
+      },
+      {
+        "key": "hideFullscreen",
+        "type": "boolean",
+        "label": "Hide in fullscreen apps"
+      },
+      {
+        "key": "reducedMotion",
+        "type": "boolean",
+        "label": "Reduced motion"
+      },
+      {
+        "key": "name",
+        "type": "string",
+        "label": "Duck name"
+      },
+      {
+        "key": "workMode",
+        "type": "boolean",
+        "label": "Work mode"
+      },
+      {
+        "key": "cursorReactions",
+        "type": "boolean",
+        "label": "React to cursor"
+      },
+      {
+        "key": "artStyle",
+        "type": "string",
+        "label": "Duck model"
+      },
+      {
+        "key": "hat",
+        "type": "string",
+        "label": "Headwear"
+      },
+      {
+        "key": "outfit",
+        "type": "string",
+        "label": "Clothes"
+      },
+      {
+        "key": "powerProfile",
+        "type": "string",
+        "label": "Power profile"
+      }
+    ]
+  }
+}

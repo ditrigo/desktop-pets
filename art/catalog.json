@@ -1,0 +1,570 @@
+{
+  "schemaVersion": 1,
+  "models": [
+    {
+      "key": "vector",
+      "label": "Classic",
+      "renderer": "flat",
+      "format": "svg",
+      "root": "assets/duck2d/vector",
+      "pixel": false,
+      "labelKey": "catalog.models.vector"
+    },
+    {
+      "key": "pixel",
+      "label": "Pixel",
+      "renderer": "flat",
+      "format": "png",
+      "root": "assets/duck2d/pixel",
+      "pixel": true,
+      "labelKey": "catalog.models.pixel"
+    },
+    {
+      "key": "voxel",
+      "label": "Voxel · 3D",
+      "renderer": "atlas",
+      "format": "atlas",
+      "root": "assets/duck3d",
+      "pixel": false,
+      "labelKey": "catalog.models.voxel"
+    }
+  ],
+  "hats": [
+    {
+      "key": "wizard",
+      "label": "Wizard",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "wizard"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "wizard"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "hat.wizard"
+        }
+      },
+      "labelKey": "catalog.hats.wizard"
+    },
+    {
+      "key": "pirate",
+      "label": "Pirate",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "pirate"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "pirate"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "hat.pirate"
+        }
+      },
+      "labelKey": "catalog.hats.pirate"
+    },
+    {
+      "key": "santa",
+      "label": "Santa hat",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "santa"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "santa"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "hat.santa"
+        }
+      },
+      "labelKey": "catalog.hats.santa"
+    },
+    {
+      "key": "explorer",
+      "label": "Explorer",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "explorer"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "explorer"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "hat.explorer"
+        }
+      },
+      "labelKey": "catalog.hats.explorer"
+    },
+    {
+      "key": "chef",
+      "label": "Chef",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "chef"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "chef"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "hat.chef"
+        }
+      },
+      "labelKey": "catalog.hats.chef"
+    },
+    {
+      "key": "crown",
+      "label": "Crown",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "crown"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "crown"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "hat.crown"
+        }
+      },
+      "labelKey": "catalog.hats.crown"
+    },
+    {
+      "key": "rainhat",
+      "label": "Rain hat",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "rainhat"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "rainhat"
+        }
+      },
+      "labelKey": "catalog.hats.rainhat"
+    },
+    {
+      "key": "detective",
+      "label": "Detective cap",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "detective"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "detective"
+        }
+      },
+      "labelKey": "catalog.hats.detective"
+    },
+    {
+      "key": "beret",
+      "label": "Beret",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "beret"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "beret"
+        }
+      },
+      "labelKey": "catalog.hats.beret"
+    },
+    {
+      "key": "straw",
+      "label": "Straw hat",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "straw"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "straw"
+        }
+      },
+      "labelKey": "catalog.hats.straw"
+    },
+    {
+      "key": "tophat",
+      "label": "Top hat",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "tophat"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "tophat"
+        }
+      },
+      "labelKey": "catalog.hats.tophat"
+    },
+    {
+      "key": "nightcap",
+      "label": "Nightcap",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "nightcap"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "nightcap"
+        }
+      },
+      "labelKey": "catalog.hats.nightcap"
+    }
+  ],
+  "outfits": [
+    {
+      "key": "scarf",
+      "label": "Scarf",
+      "layer": "neck",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "scarf"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "scarf"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "outfit.scarf"
+        }
+      },
+      "labelKey": "catalog.outfits.scarf"
+    },
+    {
+      "key": "sailor",
+      "label": "Sailor",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "sailor"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "sailor"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "outfit.sailor"
+        }
+      },
+      "labelKey": "catalog.outfits.sailor"
+    },
+    {
+      "key": "space",
+      "label": "Space suit",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "space"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "space"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "outfit.space"
+        }
+      },
+      "labelKey": "catalog.outfits.space"
+    },
+    {
+      "key": "cape",
+      "label": "Cape",
+      "layer": "back",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "cape"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "cape"
+        },
+        "voxel": {
+          "root": "assets/duck3d",
+          "format": "atlas",
+          "part": "outfit.cape"
+        }
+      },
+      "labelKey": "catalog.outfits.cape"
+    },
+    {
+      "key": "raincoat",
+      "label": "Raincoat",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "raincoat"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "raincoat"
+        }
+      },
+      "labelKey": "catalog.outfits.raincoat"
+    },
+    {
+      "key": "trench",
+      "label": "Trench coat",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "trench"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "trench"
+        }
+      },
+      "labelKey": "catalog.outfits.trench"
+    },
+    {
+      "key": "apron",
+      "label": "Artist apron",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "apron"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "apron"
+        }
+      },
+      "labelKey": "catalog.outfits.apron"
+    },
+    {
+      "key": "overalls",
+      "label": "Overalls",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "overalls"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "overalls"
+        }
+      },
+      "labelKey": "catalog.outfits.overalls"
+    },
+    {
+      "key": "tuxedo",
+      "label": "Tuxedo",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "tuxedo"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "tuxedo"
+        }
+      },
+      "labelKey": "catalog.outfits.tuxedo"
+    },
+    {
+      "key": "pajamas",
+      "label": "Pajamas",
+      "layer": "uniform",
+      "variants": {
+        "vector": {
+          "root": "assets/duck2d/vector",
+          "format": "svg",
+          "prefix": "pajamas"
+        },
+        "pixel": {
+          "root": "assets/duck2d/pixel",
+          "format": "png",
+          "prefix": "pajamas"
+        }
+      },
+      "labelKey": "catalog.outfits.pajamas"
+    }
+  ],
+  "looks": [
+    {
+      "key": "plain",
+      "label": "No accessories",
+      "hat": "none",
+      "outfit": "none",
+      "labelKey": "catalog.looks.plain"
+    },
+    {
+      "key": "explorer",
+      "label": "Explorer",
+      "hat": "explorer",
+      "outfit": "scarf",
+      "labelKey": "catalog.looks.explorer"
+    },
+    {
+      "key": "wizard",
+      "label": "Wizard",
+      "hat": "wizard",
+      "outfit": "cape",
+      "labelKey": "catalog.looks.wizard"
+    },
+    {
+      "key": "pirate",
+      "label": "Pirate",
+      "hat": "pirate",
+      "outfit": "sailor",
+      "labelKey": "catalog.looks.pirate"
+    },
+    {
+      "key": "winter",
+      "label": "Winter",
+      "hat": "santa",
+      "outfit": "scarf",
+      "labelKey": "catalog.looks.winter"
+    },
+    {
+      "key": "chef",
+      "label": "Chef",
+      "hat": "chef",
+      "outfit": "none",
+      "labelKey": "catalog.looks.chef"
+    },
+    {
+      "key": "space",
+      "label": "Space suit",
+      "hat": "none",
+      "outfit": "space",
+      "labelKey": "catalog.looks.space"
+    },
+    {
+      "key": "royal",
+      "label": "Royal",
+      "hat": "crown",
+      "outfit": "cape",
+      "labelKey": "catalog.looks.royal"
+    },
+    {
+      "key": "rain",
+      "label": "Rainy day",
+      "hat": "rainhat",
+      "outfit": "raincoat",
+      "labelKey": "catalog.looks.rain"
+    },
+    {
+      "key": "detective",
+      "label": "Detective",
+      "hat": "detective",
+      "outfit": "trench",
+      "labelKey": "catalog.looks.detective"
+    },
+    {
+      "key": "artist",
+      "label": "Artist",
+      "hat": "beret",
+      "outfit": "apron",
+      "labelKey": "catalog.looks.artist"
+    },
+    {
+      "key": "gardener",
+      "label": "Gardener",
+      "hat": "straw",
+      "outfit": "overalls",
+      "labelKey": "catalog.looks.gardener"
+    },
+    {
+      "key": "formal",
+      "label": "Tuxedo",
+      "hat": "tophat",
+      "outfit": "tuxedo",
+      "labelKey": "catalog.looks.formal"
+    },
+    {
+      "key": "bedtime",
+      "label": "Bedtime",
+      "hat": "nightcap",
+      "outfit": "pajamas",
+      "labelKey": "catalog.looks.bedtime"
+    }
+  ]
+}

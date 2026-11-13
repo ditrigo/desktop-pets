@@ -1,0 +1,38 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portable:
+    runs-on: ubuntu-latest
+    env:
+      UV_PROJECT_ENVIRONMENT: ${{ runner.temp }}/duck-art-venv
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Install portable test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+          python -m pip install uv
+      - name: Check Python and pure JavaScript
+        run: |
+          uv run --frozen --group dev ruff check tools install.py tests integration art/flat
+          uv run --frozen --group dev ruff format --check tools install.py tests integration art/flat
+          node --test tests/model.test.cjs
+          uv run --frozen python -m unittest discover -s tests -p 'test_*.py'
+          uv run --frozen python integration/check_assets.py
+      - name: Build clean portable artifacts
+        run: python tools/release.py --skip-host-validation
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: portable-release-check
+          path: dist/
+          if-no-files-found: error

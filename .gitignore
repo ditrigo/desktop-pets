@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+art/blender/renders/
+*.blend1
+/.venv/
+/.cache/
+/review/
+/dist/
+/.ruff_cache/
+/.pytest_cache/
+.DS_Store
